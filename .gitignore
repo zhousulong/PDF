@@ -1,0 +1,13 @@
+# Ignore subdirectories (to submit only the root entry page project files)
+/PDFPRN/
+/PDFQFZ/
+/PDFSCN/
+
+# Ignore node modules and build products
+node_modules/
+.DS_Store
+dist/
+build/
+.vscode/
+.idea/
+*.log
