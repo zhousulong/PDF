@@ -1,0 +1,183 @@
+{
+  "app": {
+    "title": "PDFQFZ",
+    "subtitle": "PDF Seal Stamper",
+    "tagline": "Client-side · No upload · Private & secure"
+  },
+  "tabs": {
+    "qfz": "Ride-Seam",
+    "yz": "Regular Stamp"
+  },
+  "upload": {
+    "pdf": {
+      "title": "Upload PDF Files",
+      "hint": "Drop files here or click to select",
+      "multi": "Supports batch processing",
+      "password": "PDF Password (for encrypted files)",
+      "password_placeholder": "Leave blank if no password"
+    },
+    "stamp": {
+      "title": "Upload Stamp Image",
+      "hint": "Drop stamp image here or click to select",
+      "hint2": "PNG (transparent) / JPG (auto white removal)",
+      "remove": "Remove",
+      "change": "Change"
+    }
+  },
+  "preview": {
+    "title": "PDF Preview",
+    "no_file": "Please upload a PDF file first",
+    "page": "Page {{current}} / {{total}}",
+    "prev": "Previous",
+    "next": "Next",
+    "loading": "Rendering..."
+  },
+  "config": {
+    "enable_task": "Enable Task",
+    "qfz": {
+      "title": "Ride-Seam Config",
+      "mode": "Pages",
+      "mode_all": "All pages",
+      "mode_odd": "Odd pages only",
+      "mode_even": "Even pages only",
+      "side": "Position",
+      "side_right": "Right",
+      "side_left": "Left",
+      "side_top": "Top",
+      "side_bottom": "Bottom",
+      "pos": "Vertical Position (%)",
+      "pos_hint": "0 = top, 100 = bottom",
+      "size": "Stamp Size (mm)",
+      "size_hint": "Total height/width of the combined stamp",
+      "opacity": "Opacity (%)",
+      "maxfgs": "Max Splits",
+      "maxfgs_hint": "Auto-group when exceeded (suggested: 20)"
+    },
+    "yz": {
+      "title": "Stamp Config",
+      "pages": "Pages",
+      "pages_first": "First",
+      "pages_last": "Last",
+      "pages_all": "All",
+      "pages_custom": "Custom",
+      "custom_hint": "Navigate in preview and click to place stamps per page",
+      "custom_pages_set": "Stamped Pages",
+      "custom_clear": "Clear",
+      "size": "Stamp Size (mm)",
+      "size_hint": "Calculated by width",
+      "rotation": "Rotation (°)",
+      "opacity": "Opacity (%)",
+      "pos_title": "Stamp Position",
+      "pos_hint": "Click preview to set position",
+      "pos_x": "X Position (%)",
+      "pos_y": "Y Position (%)",
+      "random": "Random offset (anti-detection)",
+      "custom_placement_guide": "Click on the right preview page to place stamp positions",
+      "drag_hint": "💡 You can also click the preview page to move the stamp"
+    },
+    "stamp": {
+      "remove_white": "Auto White Removal",
+      "remove_white_hint": "Recommended for JPG stamps",
+      "multiply": "Multiply Blend Mode",
+      "multiply_hint": "Simulates real ink blending (Recommended)"
+    }
+  },
+  "process": {
+    "title": "Process",
+    "start": "Apply Stamp",
+    "processing": "Processing...",
+    "cancel": "Cancel",
+    "success": "Complete",
+    "error": "Error",
+    "download": "Download",
+    "download_all": "Download All (ZIP)",
+    "log_title": "Processing Log",
+    "file_done": "{{name}} completed",
+    "file_err": "{{name}} failed: {{error}}",
+    "no_pdf": "Please upload a PDF file first",
+    "no_stamp": "Please upload a stamp image first",
+    "single_page_qfz": "Single-page PDF cannot use ride-seam stamp"
+  },
+  "file": {
+    "files_selected": "{{count}} file(s) selected",
+    "file_list": "File List",
+    "remove": "Remove",
+    "clear_all": "Clear All"
+  },
+  "lang": {
+    "zh": "中文",
+    "en": "EN"
+  },
+  "header": {
+    "changelog": "Changelog",
+    "changelog_view": "View changelog",
+    "close": "Close",
+    "latest": "Latest",
+    "theme": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System",
+      "aria_label": "Current theme: {{label}}, click to switch"
+    }
+  },
+  "landing": {
+    "title": "PDF Seal & Stamp Tool",
+    "description": "Secure, fast, and completely in-browser batch signature, regular stamp, and ride-seam seal tools. Files are processed locally and never uploaded to any server.",
+    "start": "Start Stamping",
+    "features": {
+      "privacy": {
+        "title": "Privacy & Security",
+        "desc": "All files are processed strictly in your browser. No files are uploaded to servers, ensuring 100% data privacy."
+      },
+      "qfz": {
+        "title": "Ride-Seam Seal",
+        "desc": "Automatically splits the seal image and attaches it perfectly to the edges of the pages in one click."
+      },
+      "custom": {
+        "title": "Precise Placement",
+        "desc": "Click anywhere on the interactive PDF preview to place a stamp. Highly configurable and intuitive."
+      },
+      "blend": {
+        "title": "Multiply Blend Mode",
+        "desc": "Simulates real ink absorption. The text behind and stamp itself blend naturally with absolute clarity."
+      },
+      "batch": {
+        "title": "Batch Processing",
+        "desc": "Supports processing multiple documents simultaneously. Download all stamped PDFs as a ZIP file."
+      },
+      "offline": {
+        "title": "Offline Capable",
+        "desc": "Fully static web application. Run it without internet after loading once, ideal for highly confidential tasks."
+      }
+    }
+  },
+  "meta": {
+    "title": "Free Online PDF Cross-Page Stamp Tool | 100% Client-Side & Private Seam Seal Generator",
+    "description": "Free online PDF cross-page stamp and seam seal tool. 100% browser-based & zero server uploads for maximum privacy. Easily add page-spanning seals, adjust split ratios, rotation, and opacity for multi-page PDF contracts."
+  },
+  "seo": {
+    "h1": "Online PDF Cross-Page Stamp Tool - Fast & Private Seam Seals",
+    "sub": "100% Client-Side Browser Calculation · Zero Server Uploads · Privacy First for Confidential Contracts",
+    "guide_title": "What is a PDF Cross-Page Stamp & How Does It Work?",
+    "guide_text": "A cross-page stamp (also known as a seam seal or page-spanning stamp) is applied across the outer edges of consecutive multi-page documents like legal contracts, tenders, and official forms. By splitting a single seal across multiple pages, it prevents tampering or unauthorized page swapping. PDFQFZ automatically calculates page counts and edge splits in your browser for seamless stamping.",
+    "faq_title": "Frequently Asked Questions (FAQ)",
+    "faqs": [
+      {
+        "q": "Is it safe to use this tool for confidential PDF contracts? Will files be uploaded?",
+        "a": "It is 100% safe and confidential. PDFQFZ operates entirely on client-side WebAssembly and HTML5 Canvas technology. All PDF processing and seal splitting occur inside your browser memory. No files are ever sent to any remote server."
+      },
+      {
+        "q": "How can I adjust the stamp position and size across multi-page PDFs?",
+        "a": "After uploading your PDF and stamp image, select 'Ride-Seam' mode. Use the config panel to customize stamp size (mm), vertical position (%), opacity, and edge alignment with real-time interactive preview."
+      },
+      {
+        "q": "What happens if my PDF document has dozens of pages?",
+        "a": "Our tool features an intelligent auto-grouping mechanism. When page counts exceed the maximum split limit (e.g. 20 pages), the system divides the stamp into optimal sub-groups so every split segment remains crisp and clear."
+      },
+      {
+        "q": "What stamp image formats are supported? How do I handle white backgrounds?",
+        "a": "We support PNG (transparent) and JPG images. If using a JPG stamp with a white background, enable 'Auto White Removal' and 'Multiply Blend Mode'. The tool will automatically strip the white fill and overlay ink naturally over text."
+      }
+    ]
+  }
+}

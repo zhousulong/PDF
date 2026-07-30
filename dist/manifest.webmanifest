@@ -1,0 +1,1 @@
+{"name":"PDF小工具箱","short_name":"PDF工具箱","description":"100% 浏览器本地运行的免费在线 PDF 工具箱 (扫描件/打印效果/骑缝章)","start_url":"/","display":"standalone","background_color":"#0a0a0c","theme_color":"#111116","lang":"zh-CN","scope":"/","icons":[{"src":"favicon.svg","sizes":"192x192 512x512","type":"image/svg+xml","purpose":"any maskable"}]}

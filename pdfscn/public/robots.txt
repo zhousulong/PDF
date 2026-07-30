@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://scn.9ump.com/sitemap.xml

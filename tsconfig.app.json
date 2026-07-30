@@ -1,0 +1,62 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/utils/scan-renderer": ["pdfscn/src/utils/scan-renderer/index.ts"],
+      "@/utils/scan-renderer/*": ["pdfscn/src/utils/scan-renderer/*"],
+      "@/composables/save-scanned-pdf": ["pdfscn/src/composables/save-scanned-pdf/index.ts"],
+      "@/composables/save-scanned-pdf/*": ["pdfscn/src/composables/save-scanned-pdf/*"],
+      "@/utils/print-renderer": ["pdfprn/src/utils/print-renderer/index.ts"],
+      "@/utils/print-renderer/*": ["pdfprn/src/utils/print-renderer/*"],
+      "@/composables/save-printed-pdf": ["pdfprn/src/composables/save-printed-pdf/index.ts"],
+      "@/composables/save-printed-pdf/*": ["pdfprn/src/composables/save-printed-pdf/*"],
+      "@/utils/pdf-renderer/*": ["pdfscn/src/utils/pdf-renderer/*"],
+      "@/utils/pdf-builder/*": ["pdfscn/src/utils/pdf-builder/*"],
+      "@/components/scan-settings/*": ["pdfscn/src/components/scan-settings/*"],
+      "@/components/print-settings/*": ["pdfprn/src/components/print-settings/*"],
+      "@/components/pdf-upload/*": ["pdfscn/src/components/pdf-upload/*"],
+      "@/components/save-button/*": ["pdfscn/src/components/save-button/*"],
+      "@/components/page-preview/*": ["pdfscn/src/components/page-preview/*"],
+      "@/components/Header/*": ["pdfscn/src/components/Header/*"],
+      "@/components/Footer/*": ["pdfscn/src/components/Footer/*"],
+      "@/components/Misc/*": ["pdfscn/src/components/Misc/*"],
+      "@/assets/examples/*": ["pdfscn/src/assets/examples/*"],
+      "@/*": ["src/*", "pdfscn/src/*", "pdfprn/src/*", "pdfqfz/src/*"]
+    }
+  },
+  "include": [
+    "src/env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "pdfscn/src/**/*.ts",
+    "pdfscn/src/**/*.vue",
+    "pdfprn/src/**/*.ts",
+    "pdfprn/src/**/*.vue"
+  ],
+  "exclude": [
+    "pdfscn/src/main.ts",
+    "pdfprn/src/main.ts",
+    "pdfscn/src/router/index.ts"
+  ]
+}

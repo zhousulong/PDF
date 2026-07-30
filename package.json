@@ -1,0 +1,53 @@
+{
+  "name": "9ump-pdf-suite",
+  "type": "module",
+  "version": "2.0.0",
+  "description": "PDF小工具箱 - 免费在线PDF转扫描件 | 电子骑缝章 | 打印效果模拟",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit -p tsconfig.app.json --composite false && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@unhead/vue": "^1.8.9",
+    "@vicons/antd": "^0.12.0",
+    "@vicons/carbon": "^0.12.0",
+    "@vicons/fa": "^0.12.0",
+    "@vicons/fluent": "^0.12.0",
+    "@vicons/ionicons4": "^0.12.0",
+    "@vicons/ionicons5": "^0.12.0",
+    "@vicons/material": "^0.12.0",
+    "@vicons/tabler": "^0.12.0",
+    "browser-fs-access": "^0.35.0",
+    "file-saver": "^2.0.5",
+    "filesize": "^10.1.0",
+    "i18next": "^26.0.8",
+    "jspdf": "^2.5.1",
+    "jszip": "^3.10.1",
+    "magica-re-export": "^1.0.9",
+    "naive-ui": "^2.35.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "3.11.174",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^17.0.6",
+    "vue": "^3.4.0",
+    "vue-i18n": "^9.10.0",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.7",
+    "@types/node": "^20.10.4",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vueuse/core": "^10.6.1",
+    "sass": "^1.69.5",
+    "typescript": "~5.3.3",
+    "vite": "^6.4.2",
+    "vite-plugin-pwa": "^0.21.1",
+    "vue-tsc": "^1.8.22",
+    "workbox-window": "^7.0.0"
+  }
+}

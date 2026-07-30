@@ -1,0 +1,182 @@
+.container { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+.startBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  letter-spacing: 0.02em;
+  flex: 1;
+  justify-content: center;
+}
+
+.startBtn:hover:not(:disabled) {
+  background: var(--color-accent-dim);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(91, 124, 250, 0.4);
+}
+
+.startBtn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.processing { background: var(--color-accent-dim) !important; }
+
+.cancelBtn {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-2);
+  color: var(--color-text-dim);
+  border: 1px solid var(--color-border-2);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.cancelBtn:hover { border-color: var(--color-error); color: var(--color-error); }
+
+.downloadAllBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: rgba(52, 211, 153, 0.08);
+  color: var(--color-success);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.downloadAllBtn:hover {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: var(--color-success);
+}
+
+/* Log */
+.logPanel {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  animation: fadeIn 0.2s var(--ease) both;
+}
+
+.logTitle {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--color-surface-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.logItems { max-height: 200px; overflow-y: auto; }
+
+.logItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-xs);
+  transition: background var(--transition);
+}
+
+.logItem:last-child { border-bottom: none; }
+
+.logIcon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+.processing .logIcon { color: var(--color-accent); }
+.done .logIcon { color: var(--color-success); font-weight: 700; }
+.error .logIcon { color: var(--color-error); font-weight: 700; }
+
+.logName {
+  flex: 1;
+  font-family: var(--font-mono);
+  color: var(--color-text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logErr {
+  font-size: var(--text-xs);
+  color: var(--color-error);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dlBtn {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--color-success);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all var(--transition);
+  flex-shrink: 0;
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.dlBtn:hover { background: rgba(52, 211, 153, 0.2); }
+
+/* Spinners */
+.spinnerSm {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.spinnerXs {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid rgba(91, 124, 250, 0.3);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .startBtn, .cancelBtn, .downloadAllBtn {
+    width: 100%;
+    flex: none;
+    text-align: center;
+    justify-content: center;
+  }
+}

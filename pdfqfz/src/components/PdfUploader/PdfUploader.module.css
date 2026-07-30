@@ -1,0 +1,174 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.dropZone {
+  position: relative;
+  border: 1.5px dashed var(--color-border-2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--color-surface-2);
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropZone:hover, .dropZone:focus-visible {
+  border-color: var(--color-accent);
+  background: var(--color-surface-3);
+  box-shadow: var(--shadow-accent);
+}
+
+.dragging {
+  border-color: var(--color-accent) !important;
+  background: rgba(91, 124, 250, 0.06) !important;
+  box-shadow: 0 0 0 1px rgba(91, 124, 250, 0.4), 0 0 30px rgba(91, 124, 250, 0.15) !important;
+}
+
+.hasFiles {
+  padding: var(--space-3) var(--space-5);
+  min-height: auto;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.uploadIcon {
+  color: var(--color-accent);
+  opacity: 0.7;
+  margin-bottom: var(--space-1);
+}
+
+.hint {
+  font-size: var(--text-sm);
+  color: var(--color-text-dim);
+}
+
+.hintSub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.fileCountBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.addMore {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+/* File list */
+.fileList {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.fileListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-3);
+}
+
+.fileListTitle {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.clearBtn {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.clearBtn:hover {
+  color: var(--color-error);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.fileItems {
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition);
+}
+
+.fileItem:last-child {
+  border-bottom: none;
+}
+
+.fileItem:hover {
+  background: var(--color-surface-3);
+}
+
+.fileIcon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.fileName {
+  flex: 1;
+  font-size: var(--text-xs);
+  color: var(--color-text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+}
+
+.removeBtn {
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--transition);
+  padding: var(--space-3); /* Increase touch target */
+  margin: calc(-1 * var(--space-3)); /* Offset the padding */
+  flex-shrink: 0;
+}
+
+.removeBtn:hover {
+  color: var(--color-error);
+}
+
+/* Password */
+.passwordRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}

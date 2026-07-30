@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- SEO Meta Tags -->
+    <title>在线PDF打印效果模拟器 - 免费将PDF转换成逼真打印与扫描件</title>
+    <meta name="description" content="免费且安全的在线PDF打印与扫描效果生成器。支持一键将干净的电子PDF转换为带质感瑕疵、偏色重影、墨水晕染和纸张纹理的打印扫描件。纯前端本地处理，文件绝不上传，保护隐私安全。" />
+    <meta name="keywords" content="在线PDF打印效果模拟器, PDF扫描件生成器, PDF打印件生成器, PDF变扫描件, 打印版PDF, 在线PDF模拟打印, 电子版转复印件" />
+    <meta name="author" content="PDFPRN" />
+    <link rel="canonical" href="https://prn.9ump.com/" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://prn.9ump.com/" />
+    <meta property="og:title" content="在线PDF打印效果模拟器 - 免费将PDF转换成逼真打印与扫描件" />
+    <meta property="og:description" content="免费且安全的在线PDF打印与扫描效果生成器。支持一键将干净的电子PDF转换为带质感瑕疵、偏色重影、墨水晕染和纸张纹理的打印扫描件。纯前端本地处理，文件绝不上传，保护隐私安全。" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="在线PDF打印效果模拟器 - 免费将PDF转换成逼真打印与扫描件" />
+    <meta name="twitter:description" content="免费且安全的在线PDF打印与扫描效果生成器。纯前端本地处理，文件绝不上传，保护隐私安全。" />
+
+    <!-- Google Fonts (非阻塞加载) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" /></noscript>
+
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    
+    <script>
+      function initTheme() {
+        const savedTheme = localStorage.getItem('pdfprn-theme') || 'system';
+        if (savedTheme === 'system') {
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      }
+      initTheme();
+    </script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- SEO -->
+    <title>在线PDF变扫描件神器 - 免费生成逼真扫描效果 (纯前端·零上传)</title>
+    <meta name="description" content="免费且绝对安全的在线PDF变扫描件工具。无需打印机与扫描仪，一键将干净的电子PDF转换为带噪点、斜切偏转、模糊与纸张纹理的逼真扫描件效果。100%浏览器本地处理，文件绝不上传服务器，彻底保障个人与企业合同隐私。" />
+    <meta name="keywords" content="PDF变扫描件, PDF扫描件效果, 在线生成扫描件PDF, PDF伪造扫描效果, 电子PDF变扫描件, PDF模拟扫描仪, 免费PDF扫描件生成器, PDF加噪点斜切" />
+    <meta name="author" content="PDFSCN" />
+    <link rel="canonical" href="https://scn.9ump.com/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://scn.9ump.com/" />
+    <link rel="alternate" hreflang="en" href="https://scn.9ump.com/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://scn.9ump.com/" />
+
+
+    <!-- Google Fonts (非阻塞加载) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" /></noscript>
+
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <script>
+      function initTheme() {
+        const savedTheme = localStorage.getItem('pdfscn-theme') || 'system';
+        if (savedTheme === 'system') {
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      }
+      initTheme();
+    </script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+/**
+ * changelog.ts
+ * 最近的版本更新记录（最多保留最新 5 条）
+ */
+
+export interface ChangeEntry {
+  version: string;
+  date: string;
+  changes: string[];
+  changesEn?: string[];
+}
+
+export const CHANGELOG: ChangeEntry[] = [
+  {
+    version: '1.2.1',
+    date: '2026-05-15',
+    changes: [
+      '修复骑缝章处理扁形印章时宽高比被错误拉伸为圆形的问题',
+    ],
+    changesEn: [
+      'Fixed an issue where the aspect ratio of flat stamps was incorrectly stretched into a circle during ride-seam processing',
+    ],
+  },
+  {
+    version: '1.2.0',
+    date: '2026-05-13',
+    changes: [
+      '多 PDF 文件同时预览：拖入多个文件后，所有页面在同一网格中显示',
+      '骑缝章跨文件连续盖章：自动将所有文件页面合并计算骑缝章分组',
+      '普通章按文件独立控制：每个 PDF 的每一页可单独设置盖章位置',
+      '多文件时显示文件标签与全局页码，方便定位',
+    ],
+    changesEn: [
+      'Simultaneous multi-PDF preview: all pages display in a unified grid after uploading multiple files',
+      'Cross-file continuous ride-seam seal: automatically combines pages of all files to calculate groupings',
+      'Independent per-file regular stamp control: stamp position can be configured separately for each page of each PDF',
+      'Displays file labels and global page numbers for easy navigation when handling multiple files',
+    ],
+  },
+  {
+    version: '1.1.0',
+    date: '2026-05-10',
+    changes: [
+      '新增骑缝章方向：支持上、下、左、右四边盖章',
+      '自定义模式支持同页多印章：可在同一页的任意位置放置多枚章',
+      '印章预览叠加层支持移除单个印章（×按钮）',
+      '处理面板新增批量下载 ZIP 功能（多文件时自动打包）',
+    ],
+    changesEn: [
+      'New ride-seam directions: supports right, left, top, and bottom edges',
+      'Custom mode supports multiple stamps per page: place multiple seals anywhere on the same page',
+      'Preview overlay supports removing individual stamps (via × button)',
+      'Batch download ZIP feature added in the processing panel (automatically packages multiple files)',
+    ],
+  },
+  {
+    version: '1.0.2',
+    date: '2026-05-07',
+    changes: [
+      '修复 Retina 屏幕下 canvas 渲染模糊问题',
+      '印章去白底算法优化，边缘处理更平滑',
+      '添加 PDF 加密文件支持（ignoreEncryption）',
+    ],
+    changesEn: [
+      'Fixed canvas rendering blurriness on Retina screens',
+      'Optimized white-background removal algorithm for stamp images with smoother edges',
+      'Added support for encrypted PDF files (ignoreEncryption)',
+    ],
+  },
+  {
+    version: '1.0.1',
+    date: '2026-05-04',
+    changes: [
+      '修复骑缝章分组算法在奇偶数模式下的页码计算错误',
+      '增加国际化支持（中 / EN 切换）',
+      '主题切换：深色 / 浅色 / 跟随系统',
+    ],
+    changesEn: [
+      'Fixed page numbering calculation errors in the ride-seam grouping algorithm under odd/even page modes',
+      'Added internationalization support (ZH/EN switcher)',
+      'Theme switching: Dark, Light, and System modes',
+    ],
+  },
+  {
+    version: '1.0.0',
+    date: '2026-05-01',
+    changes: [
+      '项目初始版本发布',
+      '支持骑缝章（多页自动分割）与普通章两种盖章模式',
+      '基于 pdf-lib 实现纯前端 PDF 处理，无需上传服务器',
+      '印章图片支持去白底、透明度、旋转、正片叠底等参数',
+    ],
+    changesEn: [
+      'Initial release of the project',
+      'Supports two stamping modes: ride-seam seal (multi-page auto division) and regular stamp',
+      'Pure client-side PDF processing powered by pdf-lib, no files uploaded to servers',
+      'Supports stamp configurations including white removal, opacity, rotation, and multiply blend effect',
+    ],
+  },
+];

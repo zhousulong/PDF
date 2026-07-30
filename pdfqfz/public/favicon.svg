@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <style>
+    :root {
+      --color-primary: #1a1a2e;
+      --color-accent: #5b7cfa;
+      --fill-opacity: 0.15;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-primary: #e8e8f0;
+      }
+    }
+    .main-path {
+      stroke: var(--color-primary);
+    }
+    .accent-path {
+      stroke: var(--color-accent);
+    }
+    .accent-circle {
+      stroke: var(--color-accent);
+      fill: var(--color-accent);
+      fill-opacity: var(--fill-opacity);
+    }
+  </style>
+  <rect class="main-path" x="4" y="4" width="24" height="24" rx="4" stroke-width="1.5"/>
+  <path class="main-path" d="M9 11h14M9 15h14M9 19h9" stroke-width="1.5" stroke-linecap="round"/>
+  <circle class="accent-circle" cx="21" cy="19" r="4" stroke-width="1.2"/>
+  <path class="accent-path" d="M19.5 19h3M21 17.5v3" stroke-width="1" stroke-linecap="round"/>
+</svg>
