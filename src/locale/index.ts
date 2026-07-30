@@ -26,6 +26,14 @@ function deepMerge(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const zhMessages = deepMerge(scanZhCN as any, printZhCN as any)
 
+// scan 的 PreviewCompare.vue 用 t('preview.scanned')，
+// 但 preview 嵌套在 scanZhCN.base 里，需要提升到顶层
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const scanBase = (scanZhCN as any).base ?? {}
+if (scanBase.preview) {
+  ;(zhMessages as Record<string, unknown>).preview = scanBase.preview
+}
+
 const i18n = createI18n({
   locale: 'zh',
   fallbackLocale: 'zh',
