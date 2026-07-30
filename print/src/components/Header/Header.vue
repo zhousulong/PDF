@@ -99,17 +99,6 @@
         <span class="theme-btn-label">{{ themeLabel }}</span>
       </button>
 
-      <!-- Language Switch -->
-      <button
-        class="lang-btn"
-        @click="toggleLang"
-        aria-label="Switch language"
-        id="lang-switcher"
-      >
-        <span :class="{ 'lang-active': locale === 'zh' }">中</span>
-        <span class="lang-divider">/</span>
-        <span :class="{ 'lang-active': locale === 'en' }">EN</span>
-      </button>
     </div>
   </header>
 </template>
@@ -118,12 +107,12 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useTheme, type ThemeMode } from '@/composables/useTheme'
-import { CHANGELOG_ZH, CHANGELOG_EN } from '@/changelog'
+import { CHANGELOG_ZH } from '@/changelog'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const { themeMode, setTheme } = useTheme()
 
-const changelogList = computed(() => (locale.value === 'zh' ? CHANGELOG_ZH : CHANGELOG_EN))
+const changelogList = CHANGELOG_ZH
 const APP_VERSION = CHANGELOG_ZH[0]?.version ?? '2.0.0'
 const changelogOpen = ref(false)
 const changelogRef = ref<HTMLElement | null>(null)
@@ -135,11 +124,7 @@ const cycleTheme = () => {
   setTheme(THEME_CYCLE[(idx + 1) % THEME_CYCLE.length])
 }
 
-const toggleLang = () => {
-  const next = locale.value === 'zh' ? 'en' : 'zh'
-  locale.value = next
-  localStorage.setItem('lang', next)
-}
+
 
 const themeLabel = computed(() => {
   if (themeMode.value === 'dark') return t('base.theme.dark')
@@ -478,38 +463,7 @@ onUnmounted(() => {
   letter-spacing: 0.02em;
 }
 
-/* ── Language button ── */
-.lang-btn {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
-  font-size: var(--text-sm);
-  color: var(--color-text-dim);
-  cursor: pointer;
-  transition: all var(--transition);
-  font-family: var(--font-mono);
-  letter-spacing: 0.05em;
-}
 
-.lang-btn:hover {
-  border-color: var(--color-accent);
-  color: var(--color-text);
-  background: var(--color-surface-3);
-}
-
-.lang-divider {
-  margin: 0 2px;
-  opacity: 0.3;
-}
-
-.lang-active {
-  color: var(--color-accent);
-  font-weight: 600;
-}
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
@@ -540,11 +494,7 @@ onUnmounted(() => {
     min-height: 36px;
     min-width: 36px;
   }
-  .lang-btn {
-    padding: var(--space-2);
-    font-size: var(--text-xs);
-    min-height: 36px;
-  }
+
   .changelog-btn-label {
     display: none;
   }

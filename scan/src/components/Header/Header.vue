@@ -100,19 +100,6 @@
         <span class="theme-btn-label">{{ themeLabel }}</span>
       </button>
 
-      <!-- Language Switch -->
-      <a
-        class="lang-btn"
-        :href="langHref"
-        :hreflang="locale === 'zh' ? 'en' : 'zh-CN'"
-        @click.prevent="toggleLang"
-        aria-label="Switch language"
-        id="lang-switcher"
-      >
-        <span :class="{ 'lang-active': locale === 'zh' }">中</span>
-        <span class="lang-divider">/</span>
-        <span :class="{ 'lang-active': locale === 'en' }">EN</span>
-      </a>
     </div>
   </header>
 
@@ -121,16 +108,13 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRouter, useRoute } from 'vue-router'
 import { useTheme, type ThemeMode } from '@/composables/useTheme'
-import { CHANGELOG_ZH, CHANGELOG_EN } from '@/changelog'
+import { CHANGELOG_ZH } from '@/changelog'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const { themeMode, setTheme } = useTheme()
-const router = useRouter()
-const route = useRoute()
 
-const changelogList = computed(() => (locale.value === 'zh' ? CHANGELOG_ZH : CHANGELOG_EN))
+const changelogList = CHANGELOG_ZH
 const APP_VERSION = CHANGELOG_ZH[0]?.version ?? '2.0.0'
 const changelogOpen = ref(false)
 const changelogRef = ref<HTMLElement | null>(null)
@@ -140,30 +124,6 @@ const THEME_CYCLE: ThemeMode[] = ['dark', 'light', 'system']
 const cycleTheme = () => {
   const idx = THEME_CYCLE.indexOf(themeMode.value)
   setTheme(THEME_CYCLE[(idx + 1) % THEME_CYCLE.length])
-}
-
-const langHref = computed(() => {
-  const targetLang = locale.value === 'zh' ? 'en' : undefined
-  const query = { ...route.query }
-  if (targetLang) {
-    query.lang = targetLang
-  } else {
-    delete query.lang
-  }
-  return router.resolve({ path: route.path, query }).href
-})
-
-const toggleLang = () => {
-  const next = locale.value === 'zh' ? 'en' : 'zh'
-  locale.value = next
-  localStorage.setItem('lang', next)
-  const query = { ...route.query }
-  if (next === 'en') {
-    query.lang = 'en'
-  } else {
-    delete query.lang
-  }
-  router.push({ path: route.path, query })
 }
 
 
@@ -504,38 +464,7 @@ onUnmounted(() => {
   letter-spacing: 0.02em;
 }
 
-/* ── Language button ── */
-.lang-btn {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
-  font-size: var(--text-sm);
-  color: var(--color-text-dim);
-  cursor: pointer;
-  transition: all var(--transition);
-  font-family: var(--font-mono);
-  letter-spacing: 0.05em;
-}
 
-.lang-btn:hover {
-  border-color: var(--color-accent);
-  color: var(--color-text);
-  background: var(--color-surface-3);
-}
-
-.lang-divider {
-  margin: 0 2px;
-  opacity: 0.3;
-}
-
-.lang-active {
-  color: var(--color-accent);
-  font-weight: 600;
-}
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
@@ -560,10 +489,7 @@ onUnmounted(() => {
   .theme-btn {
     padding: var(--space-2);
   }
-  .lang-btn {
-    padding: var(--space-2);
-    font-size: var(--text-xs);
-  }
+
   .changelog-btn-label {
     display: none;
   }
