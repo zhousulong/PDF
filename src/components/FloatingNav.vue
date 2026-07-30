@@ -59,7 +59,7 @@ const isActive = (to: string) => {
   gap: 6px;
   background: var(--color-surface, #111116);
   border: 1px solid var(--color-border, #2a2a38);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 8px 6px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(12px);
@@ -72,7 +72,7 @@ const isActive = (to: string) => {
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 9px;
+  border-radius: var(--radius-md);
   color: var(--color-text-muted, #9898b0);
   text-decoration: none;
   transition: all 0.2s ease;
@@ -108,7 +108,7 @@ const isActive = (to: string) => {
   font-size: 12px;
   font-weight: 600;
   padding: 4px 10px;
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;

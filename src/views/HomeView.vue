@@ -252,6 +252,8 @@ const themeLabel = computed(() => {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  /* 明确允许垂直滚动，防止 body overflow-x:hidden 影响 Y 轴 */
+  overflow-y: auto;
   background: var(--color-bg, #0a0a0c);
   color: var(--color-text, #e8e8f0);
   transition: background 0.3s ease, color 0.3s ease;
@@ -303,7 +305,7 @@ const themeLabel = computed(() => {
 .theme-toggle-btn:hover { border-color: #5b7cfa; background: rgba(91,124,250,0.1); }
 
 .privacy-badge {
-  font-size: 11px; padding: 4px 10px; border-radius: var(--radius-lg);
+  font-size: 11px; padding: 4px 10px; border-radius: var(--radius-sm);
   background: rgba(91,124,250,0.1); border: 1px solid rgba(91,124,250,0.25);
   color: #5b7cfa; font-weight: 600;
   display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
@@ -325,7 +327,7 @@ const themeLabel = computed(() => {
 
 .privacy-badge-hero {
   display: inline-flex; align-items: center; gap: 7px;
-  padding: 5px 14px; border-radius: 20px;
+  padding: 5px 14px; border-radius: var(--radius-sm);
   background: rgba(91,124,250,0.1); border: 1px solid rgba(91,124,250,0.25);
   color: #5b7cfa; font-size: 12px; font-weight: 600;
   margin-bottom: 18px;
