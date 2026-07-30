@@ -1,6 +1,6 @@
 import type { applyScanEffect } from './apply-scan-effect'
 
-import Worker from './apply-scan-effect.worker.ts?worker'
+import Worker from './apply-scan-effect.worker.ts?worker&inline'
 
 export const applyScanEffectWithWorker = async function (
   data: Parameters<typeof applyScanEffect>[0],

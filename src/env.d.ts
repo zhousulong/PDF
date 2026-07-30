@@ -32,7 +32,14 @@ declare module '*?url' {
 
 declare module '*?worker' {
   const workerConstructor: {
-    new (): Worker
+    new (options?: { name?: string }): Worker
+  }
+  export default workerConstructor
+}
+
+declare module '*?worker&inline' {
+  const workerConstructor: {
+    new (options?: { name?: string }): Worker
   }
   export default workerConstructor
 }

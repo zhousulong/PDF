@@ -1,16 +1,19 @@
 import type { PrintConfig } from '../config.types'
 import type { PrintRenderer } from '../types'
-import PrintWorker from './print.worker?worker'
+// &inline → blob Worker (same-origin), works when page is www.9ump.com and assets on CDN
+import PrintWorker from './print.worker?worker&inline'
 import { createPaperTextureBlob } from './defect-generators/paper-texture'
 
-// Pre-warm workers
-const workers = [
-  new PrintWorker(),
-  new PrintWorker(),
-  new PrintWorker(),
-  new PrintWorker(),
-  new PrintWorker()
-]
+// Lazy pool: avoid constructing Workers at module evaluation time
+let workers: InstanceType<typeof PrintWorker>[] | null = null
+function takeWorker() {
+  if (!workers) {
+    workers = Array.from({ length: 5 }, () => new PrintWorker())
+  }
+  const worker = workers.shift() ?? new PrintWorker()
+  workers.push(new PrintWorker())
+  return worker
+}
 
 const paperTextureBlobCache = new Map<string, Blob>()
 
@@ -30,8 +33,7 @@ export class CanvasPrinter implements PrintRenderer {
   ): Promise<{ blob: Blob }> {
     if (options?.signal?.aborted) throw new Error('Aborted')
 
-    const worker = workers.shift() ?? new PrintWorker()
-    workers.push(new PrintWorker())
+    const worker = takeWorker()
 
     options?.signal?.addEventListener('abort', () => worker.terminate())
 

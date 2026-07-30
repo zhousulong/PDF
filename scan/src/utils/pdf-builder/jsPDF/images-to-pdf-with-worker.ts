@@ -1,5 +1,5 @@
 import type { ImageInfo } from './images-to-pdf'
-import ImagesToPDFWorker from './images-to-pdf.worker.ts?worker'
+import ImagesToPDFWorker from './images-to-pdf.worker.ts?worker&inline'
 
 export async function imagesToPDFWithWorker(
   images: ImageInfo[],
