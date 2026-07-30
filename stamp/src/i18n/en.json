@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "PDFQFZ",
+    "title": "PDF Spine Stamp Tool",
     "subtitle": "PDF Seal Stamper",
     "tagline": "Client-side · No upload · Private & secure"
   },
@@ -159,12 +159,12 @@
     "h1": "Online PDF Cross-Page Stamp Tool - Fast & Private Seam Seals",
     "sub": "100% Client-Side Browser Calculation · Zero Server Uploads · Privacy First for Confidential Contracts",
     "guide_title": "What is a PDF Cross-Page Stamp & How Does It Work?",
-    "guide_text": "A cross-page stamp (also known as a seam seal or page-spanning stamp) is applied across the outer edges of consecutive multi-page documents like legal contracts, tenders, and official forms. By splitting a single seal across multiple pages, it prevents tampering or unauthorized page swapping. PDFQFZ automatically calculates page counts and edge splits in your browser for seamless stamping.",
+    "guide_text": "A cross-page stamp (also known as a seam seal or page-spanning stamp) is applied across the outer edges of consecutive multi-page documents like legal contracts, tenders, and official forms. By splitting a single seal across multiple pages, it prevents tampering or unauthorized page swapping. This tool automatically calculates page counts and edge splits in your browser for seamless stamping.",
     "faq_title": "Frequently Asked Questions (FAQ)",
     "faqs": [
       {
         "q": "Is it safe to use this tool for confidential PDF contracts? Will files be uploaded?",
-        "a": "It is 100% safe and confidential. PDFQFZ operates entirely on client-side WebAssembly and HTML5 Canvas technology. All PDF processing and seal splitting occur inside your browser memory. No files are ever sent to any remote server."
+        "a": "It is 100% safe and confidential. This tool operates entirely on client-side WebAssembly and HTML5 Canvas technology. All PDF processing and seal splitting occur inside your browser memory. No files are ever sent to any remote server."
       },
       {
         "q": "How can I adjust the stamp position and size across multi-page PDFs?",

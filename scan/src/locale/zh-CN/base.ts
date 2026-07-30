@@ -1,6 +1,6 @@
 export const base = {
-  title: 'PDFSCN',
-  subtitle: 'PDF 扫描件模拟器',
+  title: 'PDF扫描件模拟器',
+  subtitle: '在线PDF变扫描件',
   tagline: '客户端处理 · 文件不上传 · 安全私密',
   description:
     'PDFSCN 是一个能够让 PDF 看起来就像是扫描件一样的纯前端网站。你再也不需要麻烦地打印之后扫描了，你所需要的就是鼠标点几下。',

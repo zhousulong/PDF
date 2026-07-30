@@ -3,6 +3,7 @@
     <n-global-style />
     <n-message-provider>
       <CanvasScanView />
+      <FloatingNav />
     </n-message-provider>
   </n-config-provider>
 </template>
@@ -12,6 +13,7 @@ import { darkTheme, NConfigProvider, NGlobalStyle, NMessageProvider } from 'naiv
 import { computed } from 'vue'
 import CanvasScanView from '../../scan/src/views/CanvasScanView.vue'
 import { useTheme } from '@/composables/useTheme'
+import FloatingNav from '@/components/FloatingNav.vue'
 
 const { activeTheme } = useTheme()
 const theme = computed(() => (activeTheme.value === 'dark' ? darkTheme : null))
