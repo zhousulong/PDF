@@ -22,13 +22,24 @@
       <div class="header-right">
         <!-- Theme Toggle Button -->
         <button class="theme-toggle-btn" @click="cycleTheme" :title="'当前主题：' + themeLabel">
-          <span class="theme-icon" v-if="mode === 'dark'">🌙</span>
-          <span class="theme-icon" v-else-if="mode === 'light'">☀️</span>
-          <span class="theme-icon" v-else>🖥️</span>
+          <svg v-if="mode === 'dark'" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M12 8.5A5.5 5.5 0 015.5 2a5.5 5.5 0 100 10A5.5 5.5 0 0012 8.5z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <svg v-else-if="mode === 'light'" width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <circle cx="7.5" cy="7.5" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M7.5 1v1.5M7.5 12.5V14M1 7.5h1.5M12.5 7.5H14M3.05 3.05l1.06 1.06M10.89 10.89l1.06 1.06M10.89 4.11l1.06-1.06M3.05 11.95l1.06-1.06" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <svg v-else width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="1" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M4 13h6M7 10v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
           <span class="theme-label">{{ themeLabel }}</span>
         </button>
 
-        <span class="privacy-badge">🛡️ 物理级隐私安全</span>
+        <span class="privacy-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>物理级隐私安全</span>
+        </span>
       </div>
     </header>
 
@@ -36,7 +47,7 @@
       <!-- ── Hero Banner ── -->
       <section class="hero animate-fade-in">
         <div class="privacy-badge-hero">
-          <span class="badge-icon">🛡️</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span>物理级隐私安全 · 文件绝不上传到任何服务器 · 100% 本地渲染</span>
         </div>
         <h1 class="hero-title">免费在线 PDF 工具箱 (扫描件 / 打印效果 / 电子骑缝章)</h1>
@@ -180,21 +191,27 @@
         </div>
         <div class="features-box-grid">
           <div class="feature-box">
-            <div class="feature-box-icon">🛡️</div>
+            <div class="feature-box-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b7cfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
             <h3 class="feature-box-title">物理级隐私安全 (零上传)</h3>
             <p class="feature-box-desc">
               合同与保密文件从不离开您的本地设备。在浏览器 WebAssembly / JS 内存中直接渲染，杜绝商业信息泄露。
             </p>
           </div>
           <div class="feature-box">
-            <div class="feature-box-icon">⚡</div>
+            <div class="feature-box-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b7cfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
             <h3 class="feature-box-title">不用排队上传，导出更快</h3>
             <p class="feature-box-desc">
               省去上传几万 KB 文件的网络传输瓶颈，直接调用您电脑的 CPU / GPU 芯片渲染，文件处理几乎瞬时完成。
             </p>
           </div>
           <div class="feature-box">
-            <div class="feature-box-icon">💧</div>
+            <div class="feature-box-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b7cfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
             <h3 class="feature-box-title">免费且无任何强制水印</h3>
             <p class="feature-box-desc">
               导出的 PDF 保持高清矢量质感，无任何强制商业水印或付费导出限制，真正开箱即用。
@@ -340,6 +357,9 @@ const themeLabel = computed(() => {
   border: 1px solid rgba(91, 124, 250, 0.25);
   color: #5b7cfa;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .main-content {
@@ -539,7 +559,13 @@ const themeLabel = computed(() => {
 }
 
 .feature-box-icon {
-  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(91, 124, 250, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 12px;
 }
 

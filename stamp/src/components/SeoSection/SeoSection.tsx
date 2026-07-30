@@ -41,14 +41,14 @@ export const SeoSection: React.FC = () => {
 
       <div className={styles.guideCard}>
         <h2 className={styles.guideTitle}>
-          <span>📖</span> {t('seo.guide_title')}
+          {t('seo.guide_title')}
         </h2>
         <p className={styles.guideText}>{t('seo.guide_text')}</p>
       </div>
 
       <div className={styles.faqSection}>
         <h2 className={styles.faqHeading}>
-          <span>💡</span> {t('seo.faq_title')}
+          {t('seo.faq_title')}
         </h2>
         <div className={styles.faqGrid}>
           {Array.isArray(faqs) &&

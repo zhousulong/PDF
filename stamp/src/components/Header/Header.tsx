@@ -165,18 +165,6 @@ export default function Header() {
           <ThemeIcon />
           <span className={styles.themeBtnLabel}>{themeLabel}</span>
         </button>
-
-        {/* 语言切换 */}
-        <button
-          className={styles.langBtn}
-          onClick={toggleLang}
-          aria-label="Switch language"
-          id="lang-switcher"
-        >
-          <span className={i18n.language === 'zh' ? styles.langActive : ''}>中</span>
-          <span className={styles.langDivider}>/</span>
-          <span className={i18n.language === 'en' ? styles.langActive : ''}>EN</span>
-        </button>
       </div>
     </header>
   );
