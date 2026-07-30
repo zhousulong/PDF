@@ -1,11 +1,13 @@
 <template>
-  <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
-    <n-global-style />
-    <n-message-provider>
-      <CanvasScanView />
-      <FloatingNav />
-    </n-message-provider>
-  </n-config-provider>
+  <div class="app-tool-page">
+    <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
+      <n-global-style />
+      <n-message-provider>
+        <CanvasScanView />
+        <FloatingNav />
+      </n-message-provider>
+    </n-config-provider>
+  </div>
 </template>
 
 <script lang="ts" setup>

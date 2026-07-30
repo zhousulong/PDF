@@ -385,11 +385,14 @@ label {
   margin: var(--space-3) 0;
 }
 
+/* 功能页（scan/print/stamp）需要整屏固定布局，由 .app-tool-page 控制 */
 @media (min-width: 769px) {
-  html, body, #app, .view, .n-config-provider, .n-message-provider {
-    height: 100vh !important;
-    height: 100dvh !important;
-    overflow: hidden !important;
+  .app-tool-page,
+  .app-tool-page .n-config-provider,
+  .app-tool-page .n-message-provider {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
   }
 }
 

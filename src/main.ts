@@ -11,3 +11,8 @@ app.use(i18n)
 app.use(head)
 app.mount('#app')
 
+// Fade in after mount to prevent FOUC
+requestAnimationFrame(() => {
+  document.documentElement.style.transition = 'opacity 0.15s ease'
+  document.documentElement.style.opacity = '1'
+})
