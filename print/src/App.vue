@@ -89,10 +89,10 @@ function updateSeoMeta() {
                 },
                 {
                   '@type': 'Question',
-                  name: 'PDFPRN 处理文件安全吗？会上传我的敏感文档吗？',
+                  name: '本工具处理文件安全吗？会上传我的敏感文档吗？',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: '绝对安全！PDFPRN 采用 100% 纯前端浏览器本地处理（WebAssembly / Web Worker），您的 PDF 文件永远不会被上传到任何服务器，完全保证个人隐私与合同安全。'
+                    text: '绝对安全！本工具采用 100% 纯前端浏览器本地处理（WebAssembly / Web Worker），您的 PDF 文件永远不会被上传到任何服务器，完全保证个人隐私与合同安全。'
                   }
                 }
               ]
@@ -107,10 +107,10 @@ function updateSeoMeta() {
                 },
                 {
                   '@type': 'Question',
-                  name: 'Is PDFPRN safe to use? Are my files uploaded?',
+                  name: 'Is this tool safe to use? Are my files uploaded?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: '100% Safe. PDFPRN operates entirely within your local browser. Your documents never leave your device and are never uploaded to any remote server.'
+                    text: '100% Safe. This tool operates entirely within your local browser. Your documents never leave your device and are never uploaded to any remote server.'
                   }
                 }
               ]

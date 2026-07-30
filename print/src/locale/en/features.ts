@@ -16,11 +16,11 @@ export const features = {
   openSource: {
     title: 'Open Source',
     description:
-      'PDFPRN is open source! You can deploy it locally and customize the defect rendering pipeline as you wish.'
+      'This tool is open source! Deploy locally and customize the defect rendering pipeline as you wish.'
   },
   mobileFriendly: {
     title: 'Cross-platform',
-    description: 'PDFPRN works smoothly on smartphones and tablets across all major modern browsers.'
+    description: 'This tool works smoothly on smartphones and tablets across all major modern browsers.'
   },
   offlineUse: {
     title: 'Offline Support',

@@ -1,5 +1,5 @@
 export const base = {
-  title: 'PDFPRN',
+  title: 'PDF Print Simulator',
   subtitle: 'PDF Printer Simulator',
   pageTitle: 'Online PDF Printer Simulator & Scanned PDF Generator',
   pageDescription:
@@ -8,7 +8,7 @@ export const base = {
     'PDF printer simulator, look printed, scanned PDF generator, make PDF look scanned, pdf to scan online, convert pdf to scanned copy, online printer simulator, pdf scan effect',
   tagline: 'Client-side processing · No file uploads · Secure & Private',
   description:
-    'PDFPRN is a pure frontend website that makes your PDFs look like they were printed by real printers. It supports color/grayscale printing for laser, inkjet, and dot-matrix printers, simulating various realistic printing defects. No need for physical printing anymore - just a few clicks.',
+    'This is a pure frontend tool that simulates real printer output. Supports color/grayscale, laser/inkjet/dot-matrix printers with realistic defects. No physical printing needed - just a few clicks.',
   keywords: 'PDF printer simulator, look printed, scanned PDF generator, make PDF look scanned, pdf to scan online',
   printTitle: 'Print Simulation',
   serviceWorker: {

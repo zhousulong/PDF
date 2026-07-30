@@ -16,17 +16,17 @@ export const features = {
   openSource: {
     title: '开源',
     description:
-      'PDFSCN 是开源的！你可以在 {github} 上下载源代码。并且本网站的灵感也是来自另一个开源项目：{scanyourpdf}',
+      '本工具是开源的！你可以在 {github} 上下载源代码。本工具的灵感也来自另一个开源项目：{scanyourpdf}',
     github: 'GitHub',
     scanyourpdf: 'baicunko/scanyourpdf'
   },
   mobileFriendly: {
     title: '跨平台',
-    description: 'PDFSCN 在手机上也能用！不仅如此，在所有的现代浏览器上都能正常工作。'
+    description: '本工具在手机上也能使用，在所有主流现代浏览器上均可正常运行。'
   },
   offlineUse: {
     title: '无需网络',
     description:
-      'PDFSCN 在没有网络的时候也可以运行，没有漫长的等待上传的过程，也免受小水管的折磨。'
+      '本工具在无网络时也可运行，无需上传等待，离线即用。'
   }
 }

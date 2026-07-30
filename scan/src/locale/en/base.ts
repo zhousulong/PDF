@@ -1,9 +1,9 @@
 export const base = {
-  title: 'PDFSCN',
+  title: 'PDF Scan Simulator',
   subtitle: 'PDF Scan Simulator',
   tagline: 'Local processing · No upload · Secure & Private',
   description:
-    'PDFSCN is a pure frontend site that makes your PDFs look scanned! No need for printers and scanners anymore - everything you need to do is just a few clicks.',
+    'This is a pure frontend tool that makes your PDFs look scanned. No printers or scanners needed - just a few clicks.',
   scanTitle: 'Scan',
   serviceWorker: {
     offlineReady: 'App ready to work offline',

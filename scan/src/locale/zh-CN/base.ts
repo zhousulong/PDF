@@ -3,7 +3,7 @@ export const base = {
   subtitle: '在线PDF变扫描件',
   tagline: '客户端处理 · 文件不上传 · 安全私密',
   description:
-    'PDFSCN 是一个能够让 PDF 看起来就像是扫描件一样的纯前端网站。你再也不需要麻烦地打印之后扫描了，你所需要的就是鼠标点几下。',
+    '这是一个能让 PDF 看起来像扫描件的纯前端工具，无需打印机与扫描仪，鼠标点几下即可完成。',
   scanTitle: '扫描',
   serviceWorker: {
     offlineReady: '离线缓存已准备就绪',

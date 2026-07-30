@@ -16,11 +16,11 @@ export const features = {
   openSource: {
     title: '开源',
     description:
-      'PDFPRN 是开源的！你可以免费在本地部署并自定义您的瑕疵渲染效果。'
+      '本工具是开源的，可免费在本地部署并自定义瑕疵渲染效果。'
   },
   mobileFriendly: {
     title: '跨平台',
-    description: 'PDFPRN 在手机、平板上也能流畅运行，适配主流现代浏览器。'
+    description: '本工具在手机、平板上也能流畅运行，适配主流现代浏览器。'
   },
   offlineUse: {
     title: '无需网络',

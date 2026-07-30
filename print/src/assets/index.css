@@ -1,5 +1,5 @@
 /* =========================================================
-   PDFQFZ · Global Design System
+   PDF小工具箱 · Global Design System
    Theme: Dark Precision — Industrial tool, refined execution
    ========================================================= */
 
@@ -373,7 +373,7 @@ label {
   border: 1px solid rgba(248, 113, 113, 0.3);
 }
 
-/* ── Section & Titles from PDFQFZ ── */
+/* ── Section & Titles ── */
 .section {
   display: flex;
   flex-direction: column;
