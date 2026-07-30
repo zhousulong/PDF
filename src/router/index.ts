@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/scan',
       name: 'scan',
-      component: () => import('../../scan/src/views/CanvasScanView.vue')
+      component: () => import('../views/ScanView.vue')
     },
     {
       path: '/pdfscn',
@@ -20,7 +20,7 @@ const router = createRouter({
     {
       path: '/print',
       name: 'print',
-      component: () => import('../../print/src/views/CanvasPrintView.vue')
+      component: () => import('../views/PrintView.vue')
     },
     {
       path: '/pdfprn',
