@@ -276,7 +276,7 @@ const themeLabel = computed(() => {
 
 .logo-icon {
   width: 34px; height: 34px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: rgba(91,124,250,0.12);
   border: 1px solid rgba(91,124,250,0.3);
   display: flex; align-items: center; justify-content: center;
@@ -293,7 +293,7 @@ const themeLabel = computed(() => {
 
 .theme-toggle-btn {
   display: inline-flex; align-items: center; gap: 5px;
-  padding: 5px 10px; border-radius: 7px;
+  padding: 5px 10px; border-radius: var(--radius-sm);
   background: var(--color-surface-2, rgba(255,255,255,0.05));
   border: 1px solid var(--color-border, #2a2a38);
   color: var(--color-text, #e8e8f0);
@@ -303,7 +303,7 @@ const themeLabel = computed(() => {
 .theme-toggle-btn:hover { border-color: #5b7cfa; background: rgba(91,124,250,0.1); }
 
 .privacy-badge {
-  font-size: 11px; padding: 4px 10px; border-radius: 12px;
+  font-size: 11px; padding: 4px 10px; border-radius: var(--radius-lg);
   background: rgba(91,124,250,0.1); border: 1px solid rgba(91,124,250,0.25);
   color: #5b7cfa; font-weight: 600;
   display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
@@ -365,7 +365,7 @@ const themeLabel = computed(() => {
 .tool-card {
   background: var(--color-surface, #111116);
   border: 1px solid var(--color-border, #2a2a38);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 24px;
   display: flex; flex-direction: column;
   transition: all 0.25s ease;
@@ -382,7 +382,7 @@ const themeLabel = computed(() => {
 }
 
 .card-icon-wrapper {
-  width: 44px; height: 44px; border-radius: 10px;
+  width: 44px; height: 44px; border-radius: var(--radius-md);
   background: rgba(91,124,250,0.12);
   display: flex; align-items: center; justify-content: center;
   color: #5b7cfa; flex-shrink: 0;
@@ -402,7 +402,7 @@ const themeLabel = computed(() => {
 }
 
 .card-tag {
-  font-size: 10px; padding: 2px 7px; border-radius: 4px;
+  font-size: 10px; padding: 2px 7px; border-radius: var(--radius-sm);
   background: rgba(91,124,250,0.18); color: #5b7cfa; font-weight: 600;
   white-space: nowrap; flex-shrink: 0;
 }
@@ -433,7 +433,7 @@ const themeLabel = computed(() => {
 
 .card-btn {
   display: flex; align-items: center; justify-content: center; gap: 7px;
-  padding: 11px 18px; border-radius: 9px;
+  padding: 11px 18px; border-radius: var(--radius-md);
   background: #5b7cfa; color: #fff;
   font-weight: 600; font-size: 13px;
   text-decoration: none; transition: all 0.2s ease;
@@ -467,11 +467,11 @@ const themeLabel = computed(() => {
 .feature-box {
   background: var(--color-surface, #111116);
   border: 1px solid var(--color-border, #2a2a38);
-  border-radius: 12px; padding: 20px;
+  border-radius: var(--radius-lg); padding: 20px;
 }
 
 .feature-box-icon {
-  width: 38px; height: 38px; border-radius: 9px;
+  width: 38px; height: 38px; border-radius: var(--radius-md);
   background: rgba(91,124,250,0.1);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 10px;
@@ -501,7 +501,7 @@ const themeLabel = computed(() => {
 .faq-card {
   background: var(--color-surface, #111116);
   border: 1px solid var(--color-border, #2a2a38);
-  border-radius: 11px; padding: 18px 20px;
+  border-radius: var(--radius-lg); padding: 18px 20px;
 }
 
 .faq-q {

@@ -3,11 +3,11 @@
     <!-- Logo -->
     <div class="logo">
       <span class="logo-icon">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <rect x="2" y="2" width="18" height="18" rx="3" stroke="var(--color-accent)" stroke-width="1.5"/>
-          <path d="M6 6h10M6 9h10M6 12h10M6 15h6" stroke="var(--color-text-muted)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-          <line x1="1" y1="11" x2="21" y2="11" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round"/>
-          <rect x="1" y="9" width="20" height="4" fill="var(--color-accent-glow)" opacity="0.5"/>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
         </svg>
       </span>
       <div class="logo-text">
@@ -211,7 +211,7 @@ onUnmounted(() => {
   color: var(--color-accent);
   background: var(--color-accent-glow);
   border: 1px solid rgba(91, 124, 250, 0.35);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 1px 5px;
   letter-spacing: 0.04em;
   line-height: 1.5;
@@ -400,7 +400,7 @@ onUnmounted(() => {
   color: var(--color-accent);
   background: var(--color-accent-glow);
   border: 1px solid rgba(91, 124, 250, 0.4);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 1px 5px;
   letter-spacing: 0.02em;
 }
