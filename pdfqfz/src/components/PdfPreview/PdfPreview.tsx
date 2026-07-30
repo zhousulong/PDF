@@ -22,10 +22,18 @@ let pdfjsLib: typeof import('pdfjs-dist') | null = null;
 async function getPdfjsLib() {
   if (!pdfjsLib) {
     const lib = await import('pdfjs-dist');
-    lib.GlobalWorkerOptions.workerSrc = new URL(
+    const workerUrl = new URL(
       'pdfjs-dist/build/pdf.worker.js',
       import.meta.url
     ).href;
+    try {
+      const workerBlob = new Blob([`importScripts("${workerUrl}");`], {
+        type: 'application/javascript'
+      });
+      lib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
+    } catch (e) {
+      lib.GlobalWorkerOptions.workerSrc = workerUrl;
+    }
     pdfjsLib = lib;
   }
   return pdfjsLib;
