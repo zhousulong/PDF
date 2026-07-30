@@ -20,6 +20,14 @@
         <span class="tagline">100% 浏览器本地计算 · 零上传 · 免费无水印</span>
       </div>
       <div class="header-right">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle-btn" @click="cycleTheme" :title="'当前主题：' + themeLabel">
+          <span class="theme-icon" v-if="mode === 'dark'">🌙</span>
+          <span class="theme-icon" v-else-if="mode === 'light'">☀️</span>
+          <span class="theme-icon" v-else>🖥️</span>
+          <span class="theme-label">{{ themeLabel }}</span>
+        </button>
+
         <span class="privacy-badge">🛡️ 物理级隐私安全</span>
       </div>
     </header>
@@ -75,7 +83,7 @@
               <span>无需硬件扫描仪，文件不离电脑，绝对私密</span>
             </li>
           </ul>
-          <RouterLink to="/pdfscn" class="card-btn">
+          <RouterLink to="/scan" class="card-btn">
             <span>在线生成 PDF 扫描件</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.667 2.333L9.334 7 4.667 11.667" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </RouterLink>
@@ -116,7 +124,7 @@
               <span>后台 Web Worker 并行渲染，大文件秒级导出</span>
             </li>
           </ul>
-          <RouterLink to="/pdfprn" class="card-btn">
+          <RouterLink to="/print" class="card-btn">
             <span>在线生成 PDF 打印效果</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.667 2.333L9.334 7 4.667 11.667" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </RouterLink>
@@ -157,7 +165,7 @@
               <span>支持单页落章与多文件批量处理，并导出 ZIP 包</span>
             </li>
           </ul>
-          <RouterLink to="/pdfqfz" class="card-btn">
+          <RouterLink to="/stamp" class="card-btn">
             <span>在线加盖电子骑缝章</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.667 2.333L9.334 7 4.667 11.667" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </RouterLink>
@@ -227,7 +235,17 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useTheme } from '../composables/useTheme'
+
+const { mode, cycleTheme } = useTheme()
+
+const themeLabel = computed(() => {
+  if (mode.value === 'dark') return '暗黑模式'
+  if (mode.value === 'light') return '明亮模式'
+  return '跟随系统'
+})
 </script>
 
 <style scoped>
@@ -237,6 +255,7 @@ import { RouterLink } from 'vue-router'
   min-height: 100vh;
   background: var(--color-bg, #0a0a0c);
   color: var(--color-text, #e8e8f0);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .header {
@@ -245,7 +264,7 @@ import { RouterLink } from 'vue-router'
   align-items: center;
   justify-content: space-between;
   padding: 0 28px;
-  background: rgba(17, 17, 22, 0.85);
+  background: var(--color-surface, rgba(17, 17, 22, 0.85));
   border-bottom: 1px solid var(--color-border, #2a2a38);
   position: sticky;
   top: 0;
@@ -285,6 +304,32 @@ import { RouterLink } from 'vue-router'
 .tagline {
   font-size: 13px;
   color: var(--color-text-muted, #9898b0);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--color-surface, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--color-border, #2a2a38);
+  color: var(--color-text, #e8e8f0);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  border-color: #5b7cfa;
+  background: rgba(91, 124, 250, 0.1);
 }
 
 .privacy-badge {
@@ -360,7 +405,7 @@ import { RouterLink } from 'vue-router'
 .tool-card:hover {
   transform: translateY(-4px);
   border-color: #5b7cfa;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 .card-header {

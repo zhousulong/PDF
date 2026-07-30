@@ -21,26 +21,26 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/utils/scan-renderer": ["pdfscn/src/utils/scan-renderer/index.ts"],
-      "@/utils/scan-renderer/*": ["pdfscn/src/utils/scan-renderer/*"],
-      "@/composables/save-scanned-pdf": ["pdfscn/src/composables/save-scanned-pdf/index.ts"],
-      "@/composables/save-scanned-pdf/*": ["pdfscn/src/composables/save-scanned-pdf/*"],
-      "@/utils/print-renderer": ["pdfprn/src/utils/print-renderer/index.ts"],
-      "@/utils/print-renderer/*": ["pdfprn/src/utils/print-renderer/*"],
-      "@/composables/save-printed-pdf": ["pdfprn/src/composables/save-printed-pdf/index.ts"],
-      "@/composables/save-printed-pdf/*": ["pdfprn/src/composables/save-printed-pdf/*"],
-      "@/utils/pdf-renderer/*": ["pdfscn/src/utils/pdf-renderer/*"],
-      "@/utils/pdf-builder/*": ["pdfscn/src/utils/pdf-builder/*"],
-      "@/components/scan-settings/*": ["pdfscn/src/components/scan-settings/*"],
-      "@/components/print-settings/*": ["pdfprn/src/components/print-settings/*"],
-      "@/components/pdf-upload/*": ["pdfscn/src/components/pdf-upload/*"],
-      "@/components/save-button/*": ["pdfscn/src/components/save-button/*"],
-      "@/components/page-preview/*": ["pdfscn/src/components/page-preview/*"],
-      "@/components/Header/*": ["pdfscn/src/components/Header/*"],
-      "@/components/Footer/*": ["pdfscn/src/components/Footer/*"],
-      "@/components/Misc/*": ["pdfscn/src/components/Misc/*"],
-      "@/assets/examples/*": ["pdfscn/src/assets/examples/*"],
-      "@/*": ["src/*", "pdfscn/src/*", "pdfprn/src/*", "pdfqfz/src/*"]
+      "@/utils/scan-renderer": ["scan/src/utils/scan-renderer/index.ts"],
+      "@/utils/scan-renderer/*": ["scan/src/utils/scan-renderer/*"],
+      "@/composables/save-scanned-pdf": ["scan/src/composables/save-scanned-pdf/index.ts"],
+      "@/composables/save-scanned-pdf/*": ["scan/src/composables/save-scanned-pdf/*"],
+      "@/utils/print-renderer": ["print/src/utils/print-renderer/index.ts"],
+      "@/utils/print-renderer/*": ["print/src/utils/print-renderer/*"],
+      "@/composables/save-printed-pdf": ["print/src/composables/save-printed-pdf/index.ts"],
+      "@/composables/save-printed-pdf/*": ["print/src/composables/save-printed-pdf/*"],
+      "@/utils/pdf-renderer/*": ["scan/src/utils/pdf-renderer/*"],
+      "@/utils/pdf-builder/*": ["scan/src/utils/pdf-builder/*"],
+      "@/components/scan-settings/*": ["scan/src/components/scan-settings/*"],
+      "@/components/print-settings/*": ["print/src/components/print-settings/*"],
+      "@/components/pdf-upload/*": ["scan/src/components/pdf-upload/*"],
+      "@/components/save-button/*": ["scan/src/components/save-button/*"],
+      "@/components/page-preview/*": ["scan/src/components/page-preview/*"],
+      "@/components/Header/*": ["scan/src/components/Header/*"],
+      "@/components/Footer/*": ["scan/src/components/Footer/*"],
+      "@/components/Misc/*": ["scan/src/components/Misc/*"],
+      "@/assets/examples/*": ["scan/src/assets/examples/*"],
+      "@/*": ["src/*", "scan/src/*", "print/src/*", "stamp/src/*"]
     }
   },
   "include": [
@@ -49,14 +49,14 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "pdfscn/src/**/*.ts",
-    "pdfscn/src/**/*.vue",
-    "pdfprn/src/**/*.ts",
-    "pdfprn/src/**/*.vue"
+    "scan/src/**/*.ts",
+    "scan/src/**/*.vue",
+    "print/src/**/*.ts",
+    "print/src/**/*.vue"
   ],
   "exclude": [
-    "pdfscn/src/main.ts",
-    "pdfprn/src/main.ts",
-    "pdfscn/src/router/index.ts"
+    "scan/src/main.ts",
+    "print/src/main.ts",
+    "scan/src/router/index.ts"
   ]
 }

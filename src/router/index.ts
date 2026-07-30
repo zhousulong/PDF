@@ -9,31 +9,31 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue')
     },
     {
-      path: '/pdfscn',
-      name: 'pdfscn',
-      component: () => import('../../pdfscn/src/views/CanvasScanView.vue')
-    },
-    {
       path: '/scan',
-      redirect: '/pdfscn'
+      name: 'scan',
+      component: () => import('../../scan/src/views/CanvasScanView.vue')
     },
     {
-      path: '/pdfprn',
-      name: 'pdfprn',
-      component: () => import('../../pdfprn/src/views/CanvasPrintView.vue')
+      path: '/pdfscn',
+      redirect: '/scan'
     },
     {
       path: '/print',
-      redirect: '/pdfprn'
+      name: 'print',
+      component: () => import('../../print/src/views/CanvasPrintView.vue')
     },
     {
-      path: '/pdfqfz',
-      name: 'pdfqfz',
-      component: () => import('../views/QfzView.vue')
+      path: '/pdfprn',
+      redirect: '/print'
     },
     {
       path: '/stamp',
-      redirect: '/pdfqfz'
+      name: 'stamp',
+      component: () => import('../views/StampView.vue')
+    },
+    {
+      path: '/pdfqfz',
+      redirect: '/stamp'
     },
     {
       path: '/:pathMatch(.*)*',
