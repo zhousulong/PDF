@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit -p tsconfig.app.json --composite false && vite build",
+    "build:site": "vue-tsc --noEmit -p tsconfig.app.json --composite false && vite build --outDir dist-site",
+    "build:cdn": "vue-tsc --noEmit -p tsconfig.app.json --composite false && VITE_ASSET_BASE=https://pdf.yunno.net/ vite build --outDir dist-cdn",
     "preview": "vite preview"
   },
   "dependencies": {

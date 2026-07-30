@@ -1,2 +1,23 @@
+# Cloudflare Pages style headers (kept for reference only).
+# EdgeOne Pages IGNORES this file — use root edgeone.json instead.
+# See: https://pages.edgeone.ai/zh/document/edgeone-json
+# Migration note: https://pages.edgeone.ai/zh/document/migrating-from-cloudflare-pages-to-edgeone-pages
+
+/*
+  Access-Control-Allow-Origin: https://www.9ump.com
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Access-Control-Allow-Headers: Range
+  Cross-Origin-Resource-Policy: cross-origin
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: https://www.9ump.com
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Access-Control-Allow-Headers: Range
+  Cross-Origin-Resource-Policy: cross-origin
+
+/sw.js
+  Cache-Control: no-cache
+
+/index.html
+  Cache-Control: no-cache

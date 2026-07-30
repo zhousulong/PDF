@@ -1,16 +1,7 @@
-import pdfJsWorkerURL from 'pdfjs-dist/build/pdf.worker.min.js?url'
-import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist'
+import { getDocument } from 'pdfjs-dist'
+// Prefer monorepo shared helper when built via root; fall back for standalone print app
+import { setupPdfWorker } from '../../../../../src/utils/setupPdfWorker'
 
-if (typeof window !== 'undefined') {
-  try {
-    const workerUrl = new URL(pdfJsWorkerURL, window.location.href).href
-    const workerBlob = new Blob([`importScripts("${workerUrl}");`], {
-      type: 'application/javascript'
-    })
-    GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob)
-  } catch (e) {
-    GlobalWorkerOptions.workerSrc = pdfJsWorkerURL
-  }
-}
+setupPdfWorker()
 
 export { getDocument }

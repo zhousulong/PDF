@@ -2,6 +2,7 @@ import { useHead } from '@unhead/vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
+import { SITE_ORIGIN, siteUrl } from '../../../src/config/site'
 
 export function useSEO() {
   const { locale } = useI18n()
@@ -35,12 +36,16 @@ export function useSEO() {
     }
   })
 
-  const baseUrl = 'https://scn.9ump.com'
-
-  const canonicalUrl = computed(() => {
-    // Keep canonical clean to maximize main domain weight
-    return `${baseUrl}${route.path || '/'}`
+  // Monorepo route is /scan; standalone scan app may be /
+  const pagePath = computed(() => {
+    const p = route.path || '/'
+    if (p === '/' && typeof window !== 'undefined' && !window.location.pathname.startsWith('/scan')) {
+      return '/scan'
+    }
+    return p === '/' ? '/scan' : p
   })
+
+  const canonicalUrl = computed(() => siteUrl(pagePath.value))
 
   const jsonLd = computed(() => ({
     '@context': 'https://schema.org',
@@ -48,6 +53,7 @@ export function useSEO() {
     name: seoData.value.title,
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Any',
+    url: canonicalUrl.value,
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -64,22 +70,21 @@ export function useSEO() {
     meta: [
       { name: 'description', content: computed(() => seoData.value.description) },
       { name: 'keywords', content: computed(() => seoData.value.keywords) },
-      // Open Graph
       { property: 'og:type', content: 'website' },
       { property: 'og:title', content: computed(() => seoData.value.title) },
       { property: 'og:description', content: computed(() => seoData.value.description) },
       { property: 'og:url', content: computed(() => canonicalUrl.value) },
       { property: 'og:locale', content: computed(() => seoData.value.locale) },
-      // Twitter Card
+      { property: 'og:site_name', content: 'PDF小工具箱' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: computed(() => seoData.value.title) },
       { name: 'twitter:description', content: computed(() => seoData.value.description) }
     ],
     link: [
       { rel: 'canonical', href: computed(() => canonicalUrl.value) },
-      { rel: 'alternate', hreflang: 'zh-CN', href: `${baseUrl}/` },
-      { rel: 'alternate', hreflang: 'en', href: `${baseUrl}/?lang=en` },
-      { rel: 'alternate', hreflang: 'x-default', href: `${baseUrl}/` }
+      { rel: 'alternate', hreflang: 'zh-CN', href: siteUrl('/scan') },
+      { rel: 'alternate', hreflang: 'en', href: `${SITE_ORIGIN}/scan?lang=en` },
+      { rel: 'alternate', hreflang: 'x-default', href: siteUrl('/scan') }
     ],
     script: [
       {

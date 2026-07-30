@@ -21,6 +21,8 @@ node_modules
 
 # Vite / Build outputs
 dist
+dist-site
+dist-cdn
 dist-ssr
 *.local
 .vite

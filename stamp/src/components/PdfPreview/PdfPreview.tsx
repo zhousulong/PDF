@@ -22,16 +22,18 @@ let pdfjsLib: typeof import('pdfjs-dist') | null = null;
 async function getPdfjsLib() {
   if (!pdfjsLib) {
     const lib = await import('pdfjs-dist');
+    // Prefer built worker asset URL so CDN absolute base (pdf.yunno.net) is respected
+    const workerMod = await import('pdfjs-dist/build/pdf.worker.min.js?url');
     const workerUrl = new URL(
-      'pdfjs-dist/build/pdf.worker.js',
-      import.meta.url
+      (workerMod as { default: string }).default,
+      window.location.href
     ).href;
     try {
-      const workerBlob = new Blob([`importScripts("${workerUrl}");`], {
+      const workerBlob = new Blob([`importScripts(${JSON.stringify(workerUrl)});`], {
         type: 'application/javascript'
       });
       lib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
-    } catch (e) {
+    } catch {
       lib.GlobalWorkerOptions.workerSrc = workerUrl;
     }
     pdfjsLib = lib;

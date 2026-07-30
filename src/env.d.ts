@@ -1,4 +1,18 @@
 /// <reference types="vite/client" />
+/// <reference types="vite-plugin-pwa/client" />
+
+interface ImportMetaEnv {
+  /** User-facing origin, e.g. https://www.9ump.com */
+  readonly VITE_SITE_ORIGIN?: string
+  /** Static asset CDN origin, e.g. https://pdf.yunno.net */
+  readonly VITE_CDN_ORIGIN?: string
+  /** Vite `base` override for dual-domain builds, e.g. https://pdf.yunno.net/ */
+  readonly VITE_ASSET_BASE?: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
 
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
@@ -9,4 +23,16 @@ declare module '*.vue' {
 declare module '*.pdf' {
   const src: string
   export default src
+}
+
+declare module '*?url' {
+  const src: string
+  export default src
+}
+
+declare module '*?worker' {
+  const workerConstructor: {
+    new (): Worker
+  }
+  export default workerConstructor
 }
