@@ -12,6 +12,20 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.2.2',
+    date: '2026-05-20',
+    changes: [
+      '盖章前自动将 PDF 页面统一归一化为 A4 画布：扫描件页面尺寸过大/过小时，印章比例不再失真',
+      '支持按页面方向保留横向/纵向 A4，内容等比缩放居中并留白边',
+      '可在高级选项中关闭“统一为 A4 画布”，保持原尺寸输出',
+    ],
+    changesEn: [
+      'Automatically normalize PDF pages to A4 canvas before stamping: stamp proportion stays correct even when scanned pages are much larger or smaller than A4',
+      'Preserves portrait/landscape A4 orientation based on page aspect; content is scaled proportionally, centered, and letterboxed',
+      'Can disable "Normalize to A4 canvas" in advanced options to keep original page sizes',
+    ],
+  },
+  {
     version: '1.2.1',
     date: '2026-05-15',
     changes: [

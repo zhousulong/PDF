@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { PdfFile } from '../../hooks/usePdfFiles';
 import type { QfzConfig, YzConfig } from '../../lib/pdfProcessor';
-import { addQfzStamp, addNormalStamp } from '../../lib/pdfProcessor';
+import { addQfzStamp, addNormalStamp, normalizeToA4 } from '../../lib/pdfProcessor';
 import JSZip from 'jszip';
 import styles from './ProcessPanel.module.css';
 
@@ -20,9 +20,10 @@ interface Props {
   password: string;
   qfzConfig: QfzConfig;
   yzConfig: YzConfig;
+  normalizeA4: boolean;
 }
 
-export default function ProcessPanel({ pdfFiles, stampBlob, password, qfzConfig, yzConfig }: Props) {
+export default function ProcessPanel({ pdfFiles, stampBlob, password, qfzConfig, yzConfig, normalizeA4 }: Props) {
   const { t } = useTranslation();
   const [processing, setProcessing] = useState(false);
   const [logs, setLogs] = useState<LogEntry[]>([]);
@@ -50,7 +51,15 @@ export default function ProcessPanel({ pdfFiles, stampBlob, password, qfzConfig,
       if (cancelRef.current) break;
 
       try {
-        const pdfBytes = await f.file.arrayBuffer();
+        // 读取原始 PDF 字节
+        let pdfBytes: ArrayBuffer | Uint8Array = await f.file.arrayBuffer();
+
+        // 盖章前将页面统一归一化为 A4 画布（扫描件页面尺寸可能远大于/小于 A4，
+        // 若不归一化，按 mm 计算的印章在非 A4 页面上视觉比例会失真）
+        if (normalizeA4) {
+          pdfBytes = await normalizeToA4(pdfBytes);
+        }
+
         let result: Uint8Array | undefined;
 
         if (!qfzConfig.enabled && !yzConfig.enabled) {
@@ -63,7 +72,7 @@ export default function ProcessPanel({ pdfFiles, stampBlob, password, qfzConfig,
 
         if (yzConfig.enabled) {
           result = await addNormalStamp(
-            result ? result.buffer as ArrayBuffer : pdfBytes,
+            result ?? pdfBytes,
             stampBlob,
             yzConfig,
             f.id,

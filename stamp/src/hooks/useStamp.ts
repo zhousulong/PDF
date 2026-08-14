@@ -6,6 +6,9 @@ export function useStamp() {
   const [stampUrl, setStampUrl] = useState<string | null>(null);
   const [stampName, setStampName] = useState('');
 
+  // 盖章前是否将 PDF 页面统一归一化为 A4 画布（默认开启）
+  const [normalizeA4, setNormalizeA4] = useState(true);
+
   const [qfzConfig, setQfzConfig] = useState<QfzConfig>({
     enabled: true,
     mode: 0,
@@ -60,6 +63,7 @@ export function useStamp() {
   return {
     stampBlob, stampUrl, stampName,
     qfzConfig, yzConfig,
+    normalizeA4, setNormalizeA4,
     loadStamp, clearStamp, updateQfz, updateYz,
   };
 }

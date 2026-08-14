@@ -9,6 +9,9 @@ interface Props {
   onQfzChange: <K extends keyof QfzConfig>(key: K, val: QfzConfig[K]) => void;
   onYzChange: <K extends keyof YzConfig>(key: K, val: YzConfig[K]) => void;
   onPreviewClick?: (xRatio: number, yRatio: number) => void;
+  /** 盖章前将 PDF 页面统一归一化为 A4 画布 */
+  normalizeA4?: boolean;
+  onNormalizeA4Change?: (v: boolean) => void;
 }
 
 function Field({ label, children, hint }: { label: string; children: React.ReactNode; hint?: string }) {
@@ -36,7 +39,7 @@ export function Toggle({ checked, onChange, label }: { checked: boolean; onChang
 }
 
 export default function StampConfig({
-  mode, qfzConfig, yzConfig, onQfzChange, onYzChange
+  mode, qfzConfig, yzConfig, onQfzChange, onYzChange, normalizeA4, onNormalizeA4Change
 }: Props) {
   const { t } = useTranslation();
 
@@ -58,6 +61,18 @@ export default function StampConfig({
       onChange={e => onChange(Number(e.target.value))}
     />
   );
+
+  // A4 归一化开关（与模式无关，两种模式下均展示）
+  const normalizeToggle = (normalizeA4 !== undefined && onNormalizeA4Change) ? (
+    <div className={styles.toggleRow}>
+      <Toggle
+        checked={normalizeA4}
+        onChange={onNormalizeA4Change}
+        label={t('config.normalize_a4')}
+      />
+      <span className={styles.toggleHint}>{t('config.normalize_a4_hint')}</span>
+    </div>
+  ) : null;
 
   if (mode === 'qfz') {
     return (
@@ -168,6 +183,7 @@ export default function StampConfig({
             />
             <span className={styles.toggleHint}>{t('config.stamp.multiply_hint')}</span>
           </div>
+          {normalizeToggle}
         </div>
         </div>
       </div>
@@ -346,6 +362,7 @@ export default function StampConfig({
             label={t('config.yz.random')}
           />
         </div>
+        {normalizeToggle}
         </div>
       </div>
     </div>

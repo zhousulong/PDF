@@ -34,6 +34,8 @@
   },
   "config": {
     "enable_task": "启用此项",
+    "normalize_a4": "盖章前统一为 A4 画布",
+    "normalize_a4_hint": "扫描件页面尺寸可能过大/过小，统一为 A4 可保证印章比例一致（推荐）",
     "qfz": {
       "title": "骑缝章配置",
       "mode": "盖章页面",

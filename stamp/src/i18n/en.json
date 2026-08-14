@@ -34,6 +34,8 @@
   },
   "config": {
     "enable_task": "Enable Task",
+    "normalize_a4": "Normalize to A4 canvas before stamping",
+    "normalize_a4_hint": "Scanned pages may be larger/smaller than A4; normalizing keeps the stamp proportion consistent (recommended)",
     "qfz": {
       "title": "Ride-Seam Config",
       "mode": "Pages",

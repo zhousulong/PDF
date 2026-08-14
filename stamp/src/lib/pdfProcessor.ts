@@ -54,15 +54,75 @@ export interface ProcessError {
 // 1mm = 2.8346 pt (at 72 dpi)
 const MM_TO_PT = 72 / 25.4;
 
+// A4 尺寸（pt，1pt = 1/72 inch）
+export const A4_WIDTH_PT = 210 * MM_TO_PT;   // 595.28
+export const A4_HEIGHT_PT = 297 * MM_TO_PT;  // 841.89
+
 function randomOffset(): number {
   return (Math.random() * 4 - 2) / 100; // ±2%
+}
+
+/**
+ * 将 PDF 每一页归一化为 A4 尺寸（盖章前调用）。
+ *
+ * 背景：扫描生成的 PDF 页面物理尺寸（MediaBox）可能远大于或远小于 A4，
+ * 而印章大小按 mm（sizeMm）计算、预览按 A4 (210×297mm) 假设。
+ * 若页面不是 A4，同一枚章在页面上会显得过小或过大。
+ *
+ * 处理方式（每页独立）：
+ *   1. 按页面宽高比选择目标画布：横向页面 → A4 横向，纵向页面 → A4 纵向；
+ *   2. 内容等比缩放（不拉伸变形），fit 进 A4 画布；
+ *   3. 水平/垂直居中，剩余区域留白边。
+ *
+ * 已经（接近）A4 的页面保持不变，此时直接返回原字节，避免无意义重存。
+ */
+export async function normalizeToA4(pdfBytes: ArrayBuffer | Uint8Array): Promise<Uint8Array> {
+  const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+  const pages = pdfDoc.getPages();
+
+  const TOLERANCE = 0.5; // pt，允许的尺寸容差
+  let changed = false;
+
+  for (const page of pages) {
+    const { width: w, height: h } = page.getSize();
+
+    // 按页面方向选择 A4 画布（横向页面保持横向）
+    const landscape = w > h;
+    const targetW = landscape ? A4_HEIGHT_PT : A4_WIDTH_PT;
+    const targetH = landscape ? A4_WIDTH_PT : A4_HEIGHT_PT;
+
+    // 已是目标 A4 尺寸（含容差）→ 跳过
+    if (Math.abs(w - targetW) < TOLERANCE && Math.abs(h - targetH) < TOLERANCE) {
+      continue;
+    }
+
+    // 等比缩放 fit 进 A4 画布
+    const scale = Math.min(targetW / w, targetH / h);
+    const newW = w * scale;
+    const newH = h * scale;
+    // 居中偏移（相对页面左下角，pdf-lib 坐标系 Y 向上）
+    const offsetX = (targetW - newW) / 2;
+    const offsetY = (targetH - newH) / 2;
+
+    // setSize 保持 MediaBox 原点不变，scale/translate 均相对左下角 → 逻辑自洽
+    page.setSize(targetW, targetH);
+    page.scaleContent(scale, scale);      // 先缩放（相对左下角）
+    page.translateContent(offsetX, offsetY); // 再平移到居中位置
+
+    changed = true;
+  }
+
+  if (!changed) {
+    return pdfBytes instanceof Uint8Array ? pdfBytes : new Uint8Array(pdfBytes);
+  }
+  return await pdfDoc.save();
 }
 
 /**
  * 骑缝章处理
  */
 export async function addQfzStamp(
-  pdfBytes: ArrayBuffer,
+  pdfBytes: ArrayBuffer | Uint8Array,
   stampBlob: Blob,
   config: QfzConfig,
   _password?: string,
@@ -169,7 +229,7 @@ export async function addQfzStamp(
  * @param fileId 当前文件的 id，用于从 customPositions 中取对应文件的位置
  */
 export async function addNormalStamp(
-  pdfBytes: ArrayBuffer,
+  pdfBytes: ArrayBuffer | Uint8Array,
   stampBlob: Blob,
   config: YzConfig,
   fileId: string,

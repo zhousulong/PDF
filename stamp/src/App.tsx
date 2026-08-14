@@ -22,6 +22,7 @@ export default function App() {
   const {
     stampBlob, stampUrl, stampName,
     qfzConfig, yzConfig,
+    normalizeA4, setNormalizeA4,
     loadStamp, clearStamp, updateQfz, updateYz,
   } = useStamp();
 
@@ -173,6 +174,8 @@ export default function App() {
                 yzConfig={yzConfig}
                 onQfzChange={updateQfz}
                 onYzChange={updateYz}
+                normalizeA4={normalizeA4}
+                onNormalizeA4Change={setNormalizeA4}
               />
             </section>
 
@@ -187,6 +190,7 @@ export default function App() {
                 password={password}
                 qfzConfig={qfzConfig}
                 yzConfig={yzConfig}
+                normalizeA4={normalizeA4}
               />
             </section>
           </div>
