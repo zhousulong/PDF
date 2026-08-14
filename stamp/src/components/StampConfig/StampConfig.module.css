@@ -118,6 +118,9 @@
 .toggleHint {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
+  flex: 1;
+  min-width: 0;
+  line-height: 1.5;
 }
 
 .toggle {
