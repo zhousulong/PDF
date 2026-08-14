@@ -35,7 +35,6 @@
   "config": {
     "enable_task": "启用此项",
     "normalize_a4": "盖章前统一为 A4 画布",
-    "normalize_a4_hint": "扫描件页面尺寸可能过大/过小，统一为 A4 可保证印章比例一致（推荐）",
     "qfz": {
       "title": "骑缝章配置",
       "mode": "盖章页面",
@@ -74,15 +73,12 @@
       "pos_x": "X轴位置（%）",
       "pos_y": "Y轴位置（%）",
       "random": "随机偏移（防检测）",
-      "random_hint": "每次盖章位置轻微随机偏移，避免完全一致",
       "custom_placement_guide": "在右侧预览页面上点击即可放置印章位置",
       "drag_hint": "💡 也可直接点击右侧预览页面移动印章"
     },
     "stamp": {
       "remove_white": "自动去白底",
-      "remove_white_hint": "JPG印章建议开启",
-      "multiply": "正片叠底效果",
-      "multiply_hint": "模拟真实盖章的颜色叠加（推荐）"
+      "multiply": "正片叠底效果"
     }
   },
   "process": {

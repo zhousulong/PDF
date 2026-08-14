@@ -35,7 +35,6 @@
   "config": {
     "enable_task": "Enable Task",
     "normalize_a4": "Normalize to A4 canvas before stamping",
-    "normalize_a4_hint": "Scanned pages may be larger/smaller than A4; normalizing keeps the stamp proportion consistent (recommended)",
     "qfz": {
       "title": "Ride-Seam Config",
       "mode": "Pages",
@@ -74,15 +73,12 @@
       "pos_x": "X Position (%)",
       "pos_y": "Y Position (%)",
       "random": "Random offset (anti-detection)",
-      "random_hint": "Slightly randomize stamp position each time to avoid identical placement",
       "custom_placement_guide": "Click on the right preview page to place stamp positions",
       "drag_hint": "💡 You can also click the preview page to move the stamp"
     },
     "stamp": {
       "remove_white": "Auto White Removal",
-      "remove_white_hint": "Recommended for JPG stamps",
-      "multiply": "Multiply Blend Mode",
-      "multiply_hint": "Simulates real ink blending (Recommended)"
+      "multiply": "Multiply Blend Mode"
     }
   },
   "process": {

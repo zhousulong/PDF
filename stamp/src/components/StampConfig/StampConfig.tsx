@@ -63,21 +63,17 @@ export default function StampConfig({
   );
 
   /**
-   * 统一的设置开关行：左侧开关 + 右侧两行（标题 / 描述）。
+   * 统一的设置开关行：左侧开关 + 右侧标题（单行，无描述，适配窄侧边栏）。
    * 所有高级选项均使用此布局，保持视觉一致。
    */
   const settingToggle = (
     checked: boolean,
     onChange: (v: boolean) => void,
-    title: string,
-    desc: string
+    title: string
   ) => (
     <div className={styles.settingRow}>
       <Toggle checked={checked} onChange={onChange} />
-      <div className={styles.settingText}>
-        <span className={styles.settingTitle}>{title}</span>
-        <span className={styles.settingDesc}>{desc}</span>
-      </div>
+      <span className={styles.settingTitle}>{title}</span>
     </div>
   );
 
@@ -86,8 +82,7 @@ export default function StampConfig({
     settingToggle(
       normalizeA4,
       onNormalizeA4Change,
-      t('config.normalize_a4'),
-      t('config.normalize_a4_hint')
+      t('config.normalize_a4')
     )
   ) : null;
 
@@ -187,14 +182,12 @@ export default function StampConfig({
           {settingToggle(
             qfzConfig.removeWhite,
             v => onQfzChange('removeWhite', v),
-            t('config.stamp.remove_white'),
-            t('config.stamp.remove_white_hint')
+            t('config.stamp.remove_white')
           )}
           {settingToggle(
             qfzConfig.multiply,
             v => onQfzChange('multiply', v),
-            t('config.stamp.multiply'),
-            t('config.stamp.multiply_hint')
+            t('config.stamp.multiply')
           )}
           {normalizeToggle}
         </div>
@@ -357,20 +350,17 @@ export default function StampConfig({
         {settingToggle(
           yzConfig.removeWhite,
           v => onYzChange('removeWhite', v),
-          t('config.stamp.remove_white'),
-          t('config.stamp.remove_white_hint')
+          t('config.stamp.remove_white')
         )}
         {settingToggle(
           yzConfig.multiply,
           v => onYzChange('multiply', v),
-          t('config.stamp.multiply'),
-          t('config.stamp.multiply_hint')
+          t('config.stamp.multiply')
         )}
         {settingToggle(
           yzConfig.random,
           v => onYzChange('random', v),
-          t('config.yz.random'),
-          t('config.yz.random_hint')
+          t('config.yz.random')
         )}
         {normalizeToggle}
         </div>
