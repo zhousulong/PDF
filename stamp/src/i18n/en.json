@@ -74,6 +74,7 @@
       "pos_x": "X Position (%)",
       "pos_y": "Y Position (%)",
       "random": "Random offset (anti-detection)",
+      "random_hint": "Slightly randomize stamp position each time to avoid identical placement",
       "custom_placement_guide": "Click on the right preview page to place stamp positions",
       "drag_hint": "💡 You can also click the preview page to move the stamp"
     },

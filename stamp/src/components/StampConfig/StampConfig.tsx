@@ -62,16 +62,33 @@ export default function StampConfig({
     />
   );
 
+  /**
+   * 统一的设置开关行：左侧开关 + 右侧两行（标题 / 描述）。
+   * 所有高级选项均使用此布局，保持视觉一致。
+   */
+  const settingToggle = (
+    checked: boolean,
+    onChange: (v: boolean) => void,
+    title: string,
+    desc: string
+  ) => (
+    <div className={styles.settingRow}>
+      <Toggle checked={checked} onChange={onChange} />
+      <div className={styles.settingText}>
+        <span className={styles.settingTitle}>{title}</span>
+        <span className={styles.settingDesc}>{desc}</span>
+      </div>
+    </div>
+  );
+
   // A4 归一化开关（与模式无关，两种模式下均展示）
   const normalizeToggle = (normalizeA4 !== undefined && onNormalizeA4Change) ? (
-    <div className={styles.toggleRow}>
-      <Toggle
-        checked={normalizeA4}
-        onChange={onNormalizeA4Change}
-        label={t('config.normalize_a4')}
-      />
-      <span className={styles.toggleHint}>{t('config.normalize_a4_hint')}</span>
-    </div>
+    settingToggle(
+      normalizeA4,
+      onNormalizeA4Change,
+      t('config.normalize_a4'),
+      t('config.normalize_a4_hint')
+    )
   ) : null;
 
   if (mode === 'qfz') {
@@ -167,22 +184,18 @@ export default function StampConfig({
 
         {/* 高级选项 */}
         <div className={styles.toggleGroup}>
-          <div className={styles.toggleRow}>
-            <Toggle
-              checked={qfzConfig.removeWhite}
-              onChange={v => onQfzChange('removeWhite', v)}
-              label={t('config.stamp.remove_white')}
-            />
-            <span className={styles.toggleHint}>{t('config.stamp.remove_white_hint')}</span>
-          </div>
-          <div className={styles.toggleRow}>
-            <Toggle
-              checked={qfzConfig.multiply}
-              onChange={v => onQfzChange('multiply', v)}
-              label={t('config.stamp.multiply')}
-            />
-            <span className={styles.toggleHint}>{t('config.stamp.multiply_hint')}</span>
-          </div>
+          {settingToggle(
+            qfzConfig.removeWhite,
+            v => onQfzChange('removeWhite', v),
+            t('config.stamp.remove_white'),
+            t('config.stamp.remove_white_hint')
+          )}
+          {settingToggle(
+            qfzConfig.multiply,
+            v => onQfzChange('multiply', v),
+            t('config.stamp.multiply'),
+            t('config.stamp.multiply_hint')
+          )}
           {normalizeToggle}
         </div>
         </div>
@@ -341,27 +354,24 @@ export default function StampConfig({
 
       {/* 高级选项 */}
       <div className={styles.toggleGroup}>
-        <div className={styles.toggleRow}>
-          <Toggle
-            checked={yzConfig.removeWhite}
-            onChange={v => onYzChange('removeWhite', v)}
-            label={t('config.stamp.remove_white')}
-          />
-        </div>
-        <div className={styles.toggleRow}>
-          <Toggle
-            checked={yzConfig.multiply}
-            onChange={v => onYzChange('multiply', v)}
-            label={t('config.stamp.multiply')}
-          />
-        </div>
-        <div className={styles.toggleRow}>
-          <Toggle
-            checked={yzConfig.random}
-            onChange={v => onYzChange('random', v)}
-            label={t('config.yz.random')}
-          />
-        </div>
+        {settingToggle(
+          yzConfig.removeWhite,
+          v => onYzChange('removeWhite', v),
+          t('config.stamp.remove_white'),
+          t('config.stamp.remove_white_hint')
+        )}
+        {settingToggle(
+          yzConfig.multiply,
+          v => onYzChange('multiply', v),
+          t('config.stamp.multiply'),
+          t('config.stamp.multiply_hint')
+        )}
+        {settingToggle(
+          yzConfig.random,
+          v => onYzChange('random', v),
+          t('config.yz.random'),
+          t('config.yz.random_hint')
+        )}
         {normalizeToggle}
         </div>
       </div>
