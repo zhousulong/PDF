@@ -24,13 +24,25 @@ function Field({ label, children, hint }: { label: string; children: React.React
   );
 }
 
-export function Toggle({ checked, onChange, label }: { checked: boolean; onChange: (v: boolean) => void; label?: string }) {
+export function Toggle({
+  checked,
+  onChange,
+  label,
+  disabled,
+}: {
+  checked: boolean
+  onChange: (v: boolean) => void
+  label?: string
+  disabled?: boolean
+}) {
   return (
     <button
-      className={`${styles.toggle} ${checked ? styles.toggleOn : ''}`}
-      onClick={() => onChange(!checked)}
+      className={`${styles.toggle} ${checked ? styles.toggleOn : ''} ${disabled ? styles.toggleDisabled : ''}`}
+      onClick={() => { if (!disabled) onChange(!checked); }}
       role="switch"
       aria-checked={checked}
+      aria-disabled={disabled}
+      disabled={disabled}
     >
       <span className={styles.toggleThumb} />
       {label && <span className={styles.toggleLabel}>{label}</span>}

@@ -7,7 +7,7 @@
 
     <!-- SEO Meta Tags (High-volume Real Search Keywords) -->
     <title>PDF加盖骑缝章 - 免费在线给PDF盖骑缝章</title>
-    <meta name="description" content="免费在线给PDF加盖骑缝章和公章，合同、标书不用下载软件。支持批量盖章，Word、Excel、图片也能直接盖，文件不上传。" />
+    <meta name="description" content="免费在线给PDF加盖骑缝章和公章，合同、标书不用下载软件。支持批量盖章，图片也能转 PDF 再盖，文件不上传。" />
     <meta name="keywords" content="PDF加盖骑缝章,PDF骑缝章,在线盖骑缝章,怎么给PDF盖骑缝章,PDF盖章,PDF盖公章,电子骑缝章,合同骑缝章,标书骑缝章,免费PDF骑缝章" />
     <meta name="author" content="PDF加盖骑缝章" />
 
@@ -55,7 +55,7 @@
               "name": "Word、Excel、图片能直接盖骑缝章吗？",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "可以。Word、Excel和图片会在浏览器里先转成PDF，再加盖骑缝章或公章。"
+                "text": "图片可以，浏览器里转成PDF再盖。Word和Excel请先在软件里导出或打印成PDF再上传，分页就和打印一样。"
               }
             }
           ]
@@ -67,6 +67,21 @@
     <!-- Theme + FOUC Prevention: run before any render -->
     <script>
       (function() {
+        // Ask the existing SW to check for a new version immediately.
+        // Old clients stay on a waiting worker until tabs close unless we poke it.
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            regs.forEach(function (reg) { reg.update(); });
+          });
+        }
+        // qfz.9ump.com is the stamp tool only
+        if (location.hostname === 'qfz.9ump.com') {
+          document.documentElement.setAttribute('data-tool', 'stamp');
+          var canon = document.querySelector('link[rel="canonical"]');
+          if (canon) canon.setAttribute('href', 'https://qfz.9ump.com/');
+          var ogUrl = document.querySelector('meta[property="og:url"]');
+          if (ogUrl) ogUrl.setAttribute('content', 'https://qfz.9ump.com/');
+        }
         // 1. Apply saved theme immediately to prevent flash
         var savedTheme = localStorage.getItem('9ump-theme') || 'system';
         if (savedTheme === 'system') {

@@ -18,6 +18,18 @@
   align-items: center;
   gap: var(--space-3);
   flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+a.logo:hover .logoSub { color: var(--color-accent); }
+div.logo { cursor: default; }
+
+.backMark {
+  color: var(--color-accent);
+  font-size: 16px;
+  line-height: 1;
+  margin-right: -2px;
 }
 
 .logoIcon {
@@ -27,7 +39,7 @@
   width: 36px;
   height: 36px;
   background: var(--color-accent-glow);
-  border: 1px solid rgba(91, 124, 250, 0.3);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
   border-radius: var(--radius-md);
 }
 
@@ -58,7 +70,7 @@
   font-family: var(--font-mono);
   color: var(--color-accent);
   background: var(--color-accent-glow);
-  border: 1px solid rgba(91, 124, 250, 0.35);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
   border-radius: 4px;
   padding: 1px 5px;
   letter-spacing: 0.04em;

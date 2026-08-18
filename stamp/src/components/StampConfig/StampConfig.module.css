@@ -134,6 +134,11 @@
   background: none;
 }
 
+.toggleDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .toggleThumb {
   position: relative;
   width: 32px;

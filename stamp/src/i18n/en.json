@@ -2,18 +2,27 @@
   "app": {
     "title": "Online Stamp · Seam Seal",
     "subtitle": "Official seal / cross-page stamp",
-    "tagline": "Client-side · No upload · PDF / Word / Excel / images"
+    "tagline": "Client-side · No upload · PDF / images"
   },
   "tabs": {
     "qfz": "Ride-Seam",
     "yz": "Regular Stamp"
   },
+  "onboard": {
+    "kicker": "Choose stamp type",
+    "title": "Which stamp do you need?",
+    "sub": "Pick one or both. After confirm they shrink to the top-left switches.",
+    "qfz_desc": "Split the seal across page edges for multi-page contracts",
+    "yz_desc": "Click the page to place a regular official seal",
+    "confirm": "Confirm and start",
+    "hint": "The cards fly to the switches at the top left"
+  },
   "upload": {
     "pdf": {
       "title": "Upload files to stamp",
       "hint": "Drop files here or click to select",
-      "multi": "Word / Excel / images are converted to PDF in your browser, then stamped",
-      "formats": "PDF · Word · Excel · JPG / PNG / WEBP",
+      "multi": "Images are converted to PDF in your browser. Export Word / Excel to PDF first",
+      "formats": "PDF · JPG / PNG / WEBP",
       "password": "PDF Password (for encrypted files)",
       "password_placeholder": "Leave blank if no password"
     },
@@ -27,7 +36,7 @@
   },
   "preview": {
     "title": "Preview",
-    "no_file": "Upload a PDF, Word, Excel, or image file first",
+    "no_file": "Upload a PDF or image first",
     "page": "Page {{current}} / {{total}}",
     "prev": "Previous",
     "next": "Next",
@@ -108,12 +117,8 @@
     "converted": "Converted to PDF",
     "source_pdf": "PDF",
     "source_image": "Image",
-    "source_docx": "Word",
-    "source_xlsx": "Excel",
-    "source_txt": "Text",
     "source_other": "File",
-    "err_legacy": "Legacy .doc / .xls is not supported. Please save as .docx / .xlsx.",
-    "err_unsupported": "This format is not supported",
+    "err_unsupported": "Please upload a PDF or image. Export Word / Excel to PDF first",
     "err_convert": "Conversion failed. Please save as PDF and try again."
   },
   "lang": {
@@ -134,7 +139,7 @@
   },
   "landing": {
     "title": "Online Stamp · Seam Seal Tool",
-    "description": "Secure, in-browser official seals and cross-page stamps. Supports PDF, Word, Excel, and images. Files never leave your device.",
+    "description": "Secure, in-browser official seals and cross-page stamps. Supports PDF and images. Files never leave your device.",
     "start": "Start Stamping",
     "features": {
       "privacy": {
@@ -143,7 +148,7 @@
       },
       "qfz": {
         "title": "Ride-Seam Seal",
-        "desc": "Automatically splits the seal and attaches it to page edges. Word / Excel / images are converted to PDF locally first."
+        "desc": "Automatically splits the seal and attaches it to page edges. Photos convert to PDF locally first."
       },
       "custom": {
         "title": "Precise Placement",
@@ -155,7 +160,7 @@
       },
       "batch": {
         "title": "Batch Processing",
-        "desc": "Upload multiple PDF / Word / Excel / image files at once and download stamped PDFs as a ZIP."
+        "desc": "Upload multiple PDF or image files at once and download stamped PDFs as a ZIP."
       },
       "offline": {
         "title": "Offline Capable",
@@ -164,14 +169,14 @@
     }
   },
   "meta": {
-    "title": "Online Stamp & Seam Seal | PDF / Word / Excel / Images · Local & Private",
-    "description": "Free online official-seal and cross-page stamp tool. Supports PDF, Word, Excel, and images. Convert and stamp entirely in your browser — files never upload."
+    "title": "Online Stamp & Seam Seal | PDF / Images · Local & Private",
+    "description": "Free online official-seal and cross-page stamp tool. Supports PDF and images. Stamp entirely in your browser — files never upload."
   },
   "seo": {
     "h1": "Online Stamp & Seam Seal for Contracts",
-    "sub": "PDF / Word / Excel / images · Convert locally · Zero uploads",
-    "guide_title": "What is a seam seal? Can I stamp Word, Excel, or photos?",
-    "guide_text": "A cross-page stamp (seam seal) is applied across the outer edges of multi-page contracts, tenders, and official forms. Splitting one seal across pages prevents tampering or page swaps. This tool converts Word, Excel, and images to PDF in your browser, then splits and places the seal with live control over size, position, and opacity.",
+    "sub": "PDF / images · Convert photos locally · Zero uploads",
+    "guide_title": "What is a seam seal? Can I stamp a photo of a contract?",
+    "guide_text": "A cross-page stamp (seam seal) is applied across the outer edges of multi-page contracts, tenders, and official forms. Splitting one seal across pages prevents tampering or page swaps. Upload a PDF, or a photo that converts to PDF in your browser, then place the seal with live control over size, position, and opacity.",
     "faq_title": "Frequently Asked Questions (FAQ)",
     "faqs": [
       {
@@ -183,8 +188,8 @@
         "a": "After uploading your file and stamp image, select 'Ride-Seam' mode. Use the config panel to customize stamp size (mm), vertical position (%), opacity, and edge alignment with real-time interactive preview."
       },
       {
-        "q": "Can I upload Word, Excel, or phone photos of a contract?",
-        "a": "Yes. The stamp tool accepts PDF, Word (.docx), Excel (.xlsx / CSV), and common image formats. Files are converted to PDF inside your browser before preview and stamping. Legacy .doc / .xls should be saved as .docx / .xlsx first."
+        "q": "Can I upload a phone photo of a contract? What about Word or Excel?",
+        "a": "Photos and images convert to PDF in your browser. For Word or Excel, export or print to PDF in the office app first, then upload that PDF so the pages match print exactly."
       },
       {
         "q": "What happens if my PDF document has dozens of pages?",

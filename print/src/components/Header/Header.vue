@@ -1,7 +1,8 @@
 <template>
   <header class="header">
     <!-- Logo -->
-    <div class="logo">
+    <RouterLink to="/" class="logo" title="返回首页">
+      <span class="back-mark" aria-hidden="true">←</span>
       <span class="logo-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -15,9 +16,9 @@
           <h1 class="logo-name">{{ t('base.title') }}</h1>
           <span class="version-badge">v{{ APP_VERSION }}</span>
         </div>
-        <span class="logo-sub">{{ t('base.subtitle') }}</span>
+        <span class="logo-sub">返回首页</span>
       </div>
-    </div>
+    </RouterLink>
 
     <!-- Center Tagline -->
     <div class="center">
@@ -106,6 +107,7 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useTheme, type ThemeMode } from '@/composables/useTheme'
 import { CHANGELOG_ZH } from '@/changelog'
@@ -170,6 +172,17 @@ onUnmounted(() => {
   align-items: center;
   gap: var(--space-3);
   flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.logo:hover .logo-sub { color: var(--color-accent); }
+
+.back-mark {
+  color: var(--color-accent);
+  font-size: 16px;
+  line-height: 1;
+  margin-right: -2px;
 }
 
 .logo-icon {
@@ -179,7 +192,7 @@ onUnmounted(() => {
   width: 36px;
   height: 36px;
   background: var(--color-accent-glow);
-  border: 1px solid rgba(91, 124, 250, 0.3);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
   border-radius: var(--radius-md);
 }
 

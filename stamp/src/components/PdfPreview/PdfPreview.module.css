@@ -128,6 +128,16 @@
   transition: left 0.15s ease, top 0.15s ease, width 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
 }
 
+.stampDraggable {
+  cursor: grab;
+}
+
+.stampDragging {
+  cursor: grabbing;
+  transition: none;
+  z-index: 20;
+}
+
 .stampOverlay {
   display: block;
   user-select: none;

@@ -84,21 +84,21 @@ const isActive = (to: string) => {
 }
 
 .nav-item:hover {
-  background: rgba(91, 124, 250, 0.12);
-  color: #5b7cfa;
+  background: var(--color-accent-glow);
+  color: var(--color-accent);
 }
 
 .nav-item.active {
-  background: rgba(91, 124, 250, 0.18);
-  color: #5b7cfa;
+  background: var(--color-accent-glow);
+  color: var(--color-accent);
 }
 
 .nav-item.primary {
-  color: #5b7cfa;
+  color: var(--color-accent);
 }
 
 .nav-item.primary:not(.active) {
-  background: rgba(91, 124, 250, 0.08);
+  background: var(--color-accent-glow);
 }
 
 .nav-icon {

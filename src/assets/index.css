@@ -146,6 +146,50 @@
   --canvas-check-b: #dddde8;
 }
 
+/* ── Per-tool accent (stamp 朱红 / scan 青绿 / print 琥珀) ── */
+html[data-theme="light"][data-tool="stamp"] {
+  --color-accent:      #b42318;
+  --color-accent-dim:  #8c1810;
+  --color-accent-glow: rgba(180, 35, 24, 0.14);
+  --color-accent-2:    #c94b3c;
+  --shadow-accent: 0 0 0 1px rgba(180, 35, 24, 0.35), 0 0 20px rgba(180, 35, 24, 0.08);
+}
+html[data-theme="dark"][data-tool="stamp"] {
+  --color-accent:      #e05a4f;
+  --color-accent-dim:  #c23b3b;
+  --color-accent-glow: rgba(224, 90, 79, 0.18);
+  --color-accent-2:    #f08a80;
+  --shadow-accent: 0 0 0 1px rgba(224, 90, 79, 0.4), 0 0 20px rgba(224, 90, 79, 0.12);
+}
+html[data-theme="light"][data-tool="scan"] {
+  --color-accent:      #0d7c78;
+  --color-accent-dim:  #0a615e;
+  --color-accent-glow: rgba(13, 124, 120, 0.14);
+  --color-accent-2:    #149e99;
+  --shadow-accent: 0 0 0 1px rgba(13, 124, 120, 0.35), 0 0 20px rgba(13, 124, 120, 0.08);
+}
+html[data-theme="dark"][data-tool="scan"] {
+  --color-accent:      #2ec4b6;
+  --color-accent-dim:  #1aa89b;
+  --color-accent-glow: rgba(46, 196, 182, 0.16);
+  --color-accent-2:    #6eddd2;
+  --shadow-accent: 0 0 0 1px rgba(46, 196, 182, 0.4), 0 0 20px rgba(46, 196, 182, 0.12);
+}
+html[data-theme="light"][data-tool="print"] {
+  --color-accent:      #c47a12;
+  --color-accent-dim:  #9a5e0c;
+  --color-accent-glow: rgba(196, 122, 18, 0.16);
+  --color-accent-2:    #d9922a;
+  --shadow-accent: 0 0 0 1px rgba(196, 122, 18, 0.35), 0 0 20px rgba(196, 122, 18, 0.08);
+}
+html[data-theme="dark"][data-tool="print"] {
+  --color-accent:      #e0a03a;
+  --color-accent-dim:  #c88820;
+  --color-accent-glow: rgba(224, 160, 58, 0.16);
+  --color-accent-2:    #f0c06a;
+  --shadow-accent: 0 0 0 1px rgba(224, 160, 58, 0.4), 0 0 20px rgba(224, 160, 58, 0.12);
+}
+
 /* ── Shared tokens (layout / typography / spacing) ── */
 :root {
   /* Typography — 无外部依赖字体栈 */

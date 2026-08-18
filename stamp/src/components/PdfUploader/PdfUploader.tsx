@@ -6,16 +6,13 @@ import type { SourceKind } from '../../lib/documentToPdf';
 import styles from './PdfUploader.module.css';
 
 function sourceKey(kind: SourceKind): string {
-  if (kind === 'image' || kind === 'docx' || kind === 'xlsx' || kind === 'txt' || kind === 'pdf') {
-    return kind;
-  }
-  return 'other';
+  if (kind === 'image' || kind === 'pdf') return kind
+  return 'other'
 }
 
 function formatFileError(error: string, t: TFunction): string {
-  if (error === 'legacy_office') return t('file.err_legacy');
-  if (error === 'unsupported_format') return t('file.err_unsupported');
-  return t('file.err_convert');
+  if (error === 'unsupported_format') return t('file.err_unsupported')
+  return t('file.err_convert')
 }
 
 interface Props {
@@ -82,7 +79,7 @@ export default function PdfUploader({
         <input
           ref={inputRef}
           type="file"
-          accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.bmp,.tif,.tiff,.svg,.docx,.xlsx,.xlsm,.csv,.txt,.doc,.xls,application/pdf,image/*,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv,text/plain"
+          accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.bmp,.tif,.tiff,.svg,application/pdf,image/*"
           multiple
           className={styles.hiddenInput}
           onChange={handleInputChange}

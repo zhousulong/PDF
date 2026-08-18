@@ -19,6 +19,7 @@ interface Props {
   clickable?: boolean;
   onPageClick?: (xRatio: number, yRatio: number, pageNum: number, fileId: string) => void;
   onRemoveStamp?: (pageNum: number, stampIndex: number | undefined, fileId: string) => void;
+  onMoveStamp?: (xRatio: number, yRatio: number, pageNum: number, stampIndex: number, fileId: string) => void;
 }
 
 /** A single page descriptor in the merged global page list */
@@ -32,7 +33,7 @@ interface GlobalPage {
 }
 
 export default function MultiFilePreviewGrid({
-  docEntries, qfzConfig, yzConfig, stampUrl, clickable, onPageClick, onRemoveStamp,
+  docEntries, qfzConfig, yzConfig, stampUrl, clickable, onPageClick, onRemoveStamp, onMoveStamp,
 }: Props) {
   // Build a flat list of all pages across all files
   const globalPages: GlobalPage[] = [];
@@ -72,6 +73,7 @@ export default function MultiFilePreviewGrid({
           clickable={clickable}
           onPageClick={onPageClick}
           onRemoveStamp={onRemoveStamp}
+          onMoveStamp={onMoveStamp}
           showFileLabel={docEntries.length > 1}
         />
       ))}
@@ -89,12 +91,13 @@ interface ItemProps {
   clickable?: boolean;
   onPageClick?: (xRatio: number, yRatio: number, pageNum: number, fileId: string) => void;
   onRemoveStamp?: (pageNum: number, stampIndex: number | undefined, fileId: string) => void;
+  onMoveStamp?: (xRatio: number, yRatio: number, pageNum: number, stampIndex: number, fileId: string) => void;
   showFileLabel: boolean;
 }
 
 function PreviewGridItem({
   globalPage, docEntries, qfzConfig, qfzGroups, yzConfig, stampUrl,
-  clickable, onPageClick, onRemoveStamp, showFileLabel,
+  clickable, onPageClick, onRemoveStamp, onMoveStamp, showFileLabel,
 }: ItemProps) {
   const { fileId, fileIndex, localPageNum, globalPageNum, pdfDoc, localTotalPages } = globalPage;
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -149,12 +152,46 @@ function PreviewGridItem({
     img.src = stampUrl;
   }, [stampUrl]);
 
+  const draggingRef = useRef<{ idx: number } | null>(null);
+  const [draggingIdx, setDraggingIdx] = useState<number | null>(null);
+
+  const ratioFromEvent = (e: { clientX: number; clientY: number }) => {
+    const rect = canvasRef.current?.getBoundingClientRect();
+    if (!rect || rect.width === 0 || rect.height === 0) return null;
+    return {
+      x: Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width)),
+      y: Math.min(1, Math.max(0, (e.clientY - rect.top) / rect.height)),
+    };
+  };
+
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!clickable || !onPageClick || !canvasRef.current) return;
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    onPageClick(x, y, localPageNum, fileId);
+    if (!clickable || !onPageClick || !canvasRef.current || draggingRef.current) return;
+    const pos = ratioFromEvent(e);
+    if (!pos) return;
+    onPageClick(pos.x, pos.y, localPageNum, fileId);
+  };
+
+  const handleStampPointerDown = (e: React.PointerEvent<HTMLDivElement>, idx: number) => {
+    if (!clickable || !onMoveStamp) return;
+    e.preventDefault();
+    e.stopPropagation();
+    draggingRef.current = { idx };
+    setDraggingIdx(idx);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handleStampPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current || !onMoveStamp) return;
+    const pos = ratioFromEvent(e);
+    if (!pos) return;
+    onMoveStamp(pos.x, pos.y, localPageNum, draggingRef.current.idx, fileId);
+  };
+
+  const handleStampPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) return;
+    e.stopPropagation();
+    draggingRef.current = null;
+    setDraggingIdx(null);
   };
 
   // ── QFZ overlay (uses globalPageNum) ──────────────────────────────────────
@@ -277,16 +314,20 @@ function PreviewGridItem({
               return (
                 <div
                   key={idx}
-                  className={styles.stampOverlayWrap}
+                  className={`${styles.stampOverlayWrap} ${clickable ? styles.stampDraggable : ''} ${draggingIdx === idx ? styles.stampDragging : ''}`}
                   style={{
                     position: 'absolute',
                     left: `${leftPct}%`,
                     top:  `${topPct}%`,
                     width: `${stampWidthPct}%`,
                     transform: `translate(-50%, -50%)`,
-                    pointerEvents: 'none',
+                    pointerEvents: clickable ? 'auto' : 'none',
                     zIndex: 10,
                   }}
+                  onPointerDown={(e) => handleStampPointerDown(e, idx)}
+                  onPointerMove={handleStampPointerMove}
+                  onPointerUp={handleStampPointerUp}
+                  onPointerCancel={handleStampPointerUp}
                 >
                   <img
                     src={stampUrl}
@@ -303,6 +344,7 @@ function PreviewGridItem({
                   {isCustom && (
                     <button
                       className={styles.closeBtn}
+                      onPointerDown={(e) => e.stopPropagation()}
                       onClick={(e) => {
                         e.stopPropagation();
                         onRemoveStamp?.(localPageNum, idx, fileId);

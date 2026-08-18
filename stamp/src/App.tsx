@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from './components/Header/Header';
 import PdfUploader from './components/PdfUploader/PdfUploader';
@@ -7,6 +7,7 @@ import StampConfig, { Toggle } from './components/StampConfig/StampConfig';
 import PdfPreview from './components/PdfPreview/PdfPreview';
 import ProcessPanel from './components/ProcessPanel/ProcessPanel';
 import SeoSection from './components/SeoSection/SeoSection';
+import ModePicker from './components/ModePicker/ModePicker';
 import { usePdfFiles } from './hooks/usePdfFiles';
 import { useStamp } from './hooks/useStamp';
 import styles from './App.module.css';
@@ -17,6 +18,9 @@ export default function App() {
   const { t } = useTranslation();
   const [mode, setMode] = useState<Mode>('qfz');
   const [mobilePanel, setMobilePanel] = useState<'config' | 'preview'>('config');
+  const [pickingMode, setPickingMode] = useState(true);
+  const [totalPages, setTotalPages] = useState(0);
+  const qfzLockedOff = totalPages > 0 && totalPages < 2;
 
   const { files, password, setPassword, addFiles, removeFile, clearAll } = usePdfFiles();
   const {
@@ -75,27 +79,70 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    if (!qfzLockedOff) return;
+    if (qfzConfig.enabled) updateQfz('enabled', false);
+    if (mode === 'qfz') {
+      if (!yzConfig.enabled) updateYz('enabled', true);
+      setMode('yz');
+    }
+  }, [qfzLockedOff, qfzConfig.enabled, yzConfig.enabled, mode, updateQfz, updateYz]);
+
+  const handleModePicked = (qfz: boolean, yz: boolean) => {
+    const allowQfz = qfz && !qfzLockedOff;
+    updateQfz('enabled', allowQfz);
+    updateYz('enabled', yz || !allowQfz);
+    setMode(allowQfz ? 'qfz' : 'yz');
+    setPickingMode(false);
+  };
+
+  const handleMoveStamp = (x: number, y: number, pageNum: number, stampIndex: number, fileId: string) => {
+    const safeX = Math.min(1, Math.max(0, x));
+    const safeY = Math.min(1, Math.max(0, y));
+    if (yzConfig.pages === 'custom') {
+      const filePosMap = yzConfig.customPositions[fileId] ?? {};
+      const current = filePosMap[pageNum];
+      const arr = Array.isArray(current) ? [...current] : [];
+      if (!arr[stampIndex]) return;
+      arr[stampIndex] = { posX: safeX, posY: safeY };
+      updateYz('customPositions', {
+        ...yzConfig.customPositions,
+        [fileId]: { ...filePosMap, [pageNum]: arr },
+      });
+    } else {
+      updateYz('posX', safeX);
+      updateYz('posY', safeY);
+    }
+  };
+
   return (
     <div className={styles.app}>
+      {pickingMode && <ModePicker onConfirm={handleModePicked} />}
       <Header />
 
       <main className={styles.main}>
         {/* ── 左侧配置区 ── */}
-        <aside className={`${styles.sidebar} ${mobilePanel === 'config' ? styles.mobileActive : styles.mobileHidden}`}>
+        <aside className={`${styles.sidebar} ${mobilePanel === 'config' || pickingMode ? styles.mobileActive : styles.mobileHidden}`}>
           {/* Mode Tabs */}
           <div className={styles.tabBar}>
             <div
               id="tab-qfz"
               role="button"
-              tabIndex={0}
-              className={`${styles.tab} ${mode === 'qfz' ? styles.tabActive : ''}`}
-              onClick={() => setMode('qfz')}
-              onKeyDown={e => e.key === 'Enter' && setMode('qfz')}
+              tabIndex={qfzLockedOff ? -1 : 0}
+              className={`${styles.tab} ${mode === 'qfz' ? styles.tabActive : ''} ${qfzLockedOff ? styles.tabLocked : ''}`}
+              onClick={() => { if (!qfzLockedOff) setMode('qfz'); }}
+              onKeyDown={e => e.key === 'Enter' && !qfzLockedOff && setMode('qfz')}
+              title={qfzLockedOff ? t('process.single_page_qfz') : undefined}
             >
-              <div className={styles.tabToggleWrap} onClick={e => e.stopPropagation()}>
-                <Toggle 
-                  checked={qfzConfig.enabled} 
-                  onChange={v => { updateQfz('enabled', v); if (v) setMode('qfz'); }} 
+              <div
+                className={styles.tabToggleWrap}
+                onClick={e => e.stopPropagation()}
+                title={qfzLockedOff ? t('process.single_page_qfz') : undefined}
+              >
+                <Toggle
+                  checked={qfzConfig.enabled && !qfzLockedOff}
+                  disabled={qfzLockedOff}
+                  onChange={v => { updateQfz('enabled', v); if (v) setMode('qfz'); }}
                 />
               </div>
               <span className={styles.tabIcon}>
@@ -212,6 +259,8 @@ export default function App() {
               password={password}
               onPageClick={handlePreviewClick}
               onRemoveStamp={handleRemoveStamp}
+              onMoveStamp={handleMoveStamp}
+              onTotalPages={setTotalPages}
               clickable={mode === 'yz'}
               stampUrl={stampUrl}
               yzConfig={yzConfig.enabled ? yzConfig : undefined}

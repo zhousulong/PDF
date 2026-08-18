@@ -1,6 +1,6 @@
 /**
  * changelog.ts
- * 最近的版本更新记录（最多保留最新 5 条）
+ * 最近的版本更新记录（面板展示全部条目，最新在上）
  */
 
 export interface ChangeEntry {
@@ -11,6 +11,48 @@ export interface ChangeEntry {
 }
 
 export const CHANGELOG: ChangeEntry[] = [
+  {
+    version: '1.4.2',
+    date: '2026-08-18',
+    changes: [
+      '不再转换 Word / Excel：请在软件里导出 PDF 后再盖章，分页与打印一致',
+      '保留图片自动转 PDF',
+    ],
+    changesEn: [
+      'Dropped Word / Excel conversion: export PDF from the office app so pages match print',
+      'Image-to-PDF conversion is unchanged',
+    ],
+  },
+  {
+    version: '1.4.1',
+    date: '2026-08-18',
+    changes: [
+      'Word / Excel 转 PDF 按打印页走：超过一页就翻页，不再把两页挤成一页',
+      'Word 以纸张尺寸分页；Excel 按行完整落到每一页，并尊重横向/打印分页符',
+    ],
+    changesEn: [
+      'Word/Excel convert to PDF using print pages: overflow goes to the next page instead of being squeezed onto one',
+      'Word follows paper size; Excel keeps whole rows on a page and honours landscape/page breaks',
+    ],
+  },
+  {
+    version: '1.4.0',
+    date: '2026-08-18',
+    changes: [
+      '打开工具时先选择骑缝章 / 普通章（可同时选），确认后卡片收到左上角开关',
+      '单页 PDF 自动关闭并禁用骑缝章，仅可使用普通章',
+      '普通章预览里点选后可拖动印章改位置',
+      '三个工具配色区分：骑缝章朱红、扫描件青绿、打印效果琥珀',
+      '各工具左上角可返回首页',
+    ],
+    changesEn: [
+      'Pick ride-seam and/or regular stamp on open; selected cards fly to the top-left switches',
+      'Single-page PDFs turn off and lock ride-seam; only regular stamp is available',
+      'Regular stamps can be dragged to a new position after placing them in preview',
+      'Distinct accents: vermillion for stamp, teal for scan, amber for print',
+      'Top-left logo on each tool goes back to the home page',
+    ],
+  },
   {
     version: '1.3.1',
     date: '2026-08-18',

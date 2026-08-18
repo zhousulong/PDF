@@ -11,6 +11,8 @@ interface Props {
   /** Called when user clicks on a page in YZ mode. fileId identifies which file. */
   onPageClick?: (xRatio: number, yRatio: number, pageNum: number, fileId: string) => void;
   onRemoveStamp?: (pageNum: number, stampIndex: number | undefined, fileId: string) => void;
+  onMoveStamp?: (xRatio: number, yRatio: number, pageNum: number, stampIndex: number, fileId: string) => void;
+  onTotalPages?: (total: number) => void;
   clickable?: boolean;
   stampUrl?: string | null;
   yzConfig?: YzConfig;
@@ -47,7 +49,7 @@ export type PdfDocEntry = {
   pageCount: number;
 };
 
-export default function PdfPreview({ files, password, onPageClick, onRemoveStamp, clickable, stampUrl, yzConfig, qfzConfig }: Props) {
+export default function PdfPreview({ files, password, onPageClick, onRemoveStamp, onMoveStamp, onTotalPages, clickable, stampUrl, yzConfig, qfzConfig }: Props) {
   const { t } = useTranslation();
   const [docEntries, setDocEntries] = useState<PdfDocEntry[]>([]);
   const [loading, setLoading] = useState(false);
@@ -60,6 +62,7 @@ export default function PdfPreview({ files, password, onPageClick, onRemoveStamp
     if (!readyFiles.length) {
       setDocEntries([]);
       loadedFilesRef.current = '';
+      onTotalPages?.(0);
       return;
     }
 
@@ -89,6 +92,7 @@ export default function PdfPreview({ files, password, onPageClick, onRemoveStamp
         if (!cancelled) {
           setDocEntries(entries);
           loadedFilesRef.current = key;
+          onTotalPages?.(entries.reduce((sum, e) => sum + e.pageCount, 0));
         }
       } finally {
         if (!cancelled) setLoading(false);
@@ -132,6 +136,7 @@ export default function PdfPreview({ files, password, onPageClick, onRemoveStamp
             clickable={clickable}
             onPageClick={onPageClick}
             onRemoveStamp={onRemoveStamp}
+            onMoveStamp={onMoveStamp}
           />
         )}
       </div>

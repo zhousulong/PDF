@@ -30,13 +30,8 @@ export function usePdfFiles() {
         name: file.name,
         sourceKind,
         originalName: file.name,
-        converting: needsConvert && sourceKind !== 'legacy_office' && sourceKind !== 'unsupported',
-        error:
-          sourceKind === 'legacy_office'
-            ? 'legacy_office'
-            : sourceKind === 'unsupported'
-              ? 'unsupported_format'
-              : undefined,
+        converting: needsConvert && sourceKind !== 'unsupported',
+        error: sourceKind === 'unsupported' ? 'unsupported_format' : undefined,
       };
       return entry;
     });

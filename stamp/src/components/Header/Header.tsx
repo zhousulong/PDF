@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useTheme, type ThemeMode } from '../../hooks/useTheme';
 import { CHANGELOG } from '../../changelog';
+import { isStampOnlyHost } from '../../../../src/config/site';
 import styles from './Header.module.css';
 
 // Read version from changelog (first entry = latest)
@@ -80,27 +81,40 @@ export default function Header() {
   const themeKey = mode === 'dark' ? 'dark' : mode === 'light' ? 'light' : 'system';
   const themeLabel = t(`header.theme.${themeKey}`);
   const ThemeIcon = mode === 'dark' ? IconMoon : mode === 'light' ? IconSun : IconSystem;
+  const stampOnly = isStampOnlyHost();
+  const logoInner = (
+    <>
+      {!stampOnly && <span className={styles.backMark} aria-hidden="true">←</span>}
+      <span className={styles.logoIcon}>
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="2" y="2" width="18" height="18" rx="3" stroke="var(--color-accent)" strokeWidth="1.5"/>
+          <path d="M6 8h10M6 11h10M6 14h6" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round"/>
+          <circle cx="16" cy="14" r="3" fill="var(--color-accent-glow)" stroke="var(--color-accent)" strokeWidth="1.2"/>
+          <path d="M14.5 14h3M16 12.5v3" stroke="var(--color-accent)" strokeWidth="1" strokeLinecap="round"/>
+        </svg>
+      </span>
+      <div className={styles.logoText}>
+        <div className={styles.logoTitleRow}>
+          <span className={styles.logoName}>{t('app.title')}</span>
+          <span className={styles.versionBadge}>v{APP_VERSION}</span>
+        </div>
+        <span className={styles.logoSub}>{stampOnly ? t('app.tagline') : '返回首页'}</span>
+      </div>
+    </>
+  );
 
   return (
     <header className={styles.header}>
       {/* ── Logo ── */}
-      <div className={styles.logo}>
-        <span className={styles.logoIcon}>
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <rect x="2" y="2" width="18" height="18" rx="3" stroke="var(--color-accent)" strokeWidth="1.5"/>
-            <path d="M6 8h10M6 11h10M6 14h6" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round"/>
-            <circle cx="16" cy="14" r="3" fill="var(--color-accent-glow)" stroke="var(--color-accent)" strokeWidth="1.2"/>
-            <path d="M14.5 14h3M16 12.5v3" stroke="var(--color-accent)" strokeWidth="1" strokeLinecap="round"/>
-          </svg>
-        </span>
-        <div className={styles.logoText}>
-          <div className={styles.logoTitleRow}>
-            <span className={styles.logoName}>{t('app.title')}</span>
-            <span className={styles.versionBadge}>v{APP_VERSION}</span>
-          </div>
-          <span className={styles.logoSub}>{t('app.subtitle')}</span>
+      {stampOnly ? (
+        <div className={styles.logo}>
+          {logoInner}
         </div>
-      </div>
+      ) : (
+        <a href="/" className={styles.logo} title="返回首页">
+          {logoInner}
+        </a>
+      )}
 
       <div className={styles.center}>
         <span className={styles.tagline}>{t('app.tagline')}</span>

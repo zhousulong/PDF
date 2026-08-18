@@ -1,13 +1,13 @@
 <template>
   <div class="home-layout">
     <header class="header">
-      <div class="logo">
+      <RouterLink to="/" class="logo" title="首页">
         <div class="logo-seal" aria-hidden="true">章</div>
         <div class="logo-text">
           <span class="logo-name">PDF骑缝章</span>
           <span class="logo-sub">免费在线盖章</span>
         </div>
-      </div>
+      </RouterLink>
       <nav class="header-nav" aria-label="工具">
         <RouterLink to="/stamp" class="nav-link current">PDF加盖骑缝章</RouterLink>
         <RouterLink to="/scan" class="nav-link">PDF转扫描件</RouterLink>
@@ -39,13 +39,13 @@
           <p class="hero-sub">免费在线给 PDF 盖骑缝章和公章，不用下载软件。</p>
           <p class="hero-desc">
             把印章按页切开，盖在多页合同或标书的边缘，防止单页被换。也支持点选盖公章。
-            Word、Excel、图片可直接上传，浏览器里转成 PDF 再盖，文件不离开这台电脑。
+            上传 PDF，或把合同照片转成 PDF 再盖，文件不离开这台电脑。
           </p>
           <div class="hero-cta-row">
             <RouterLink to="/stamp" class="hero-cta">
               给 PDF 盖骑缝章
             </RouterLink>
-            <span class="hero-formats">PDF · Word · Excel · 图片</span>
+            <span class="hero-formats">PDF · 图片</span>
           </div>
         </div>
 
@@ -60,10 +60,10 @@
             <article class="sheet s3">
               <span class="sheet-label">合同</span>
               <span class="rule"></span><span class="rule"></span><span class="rule short"></span>
-              <span class="split-seal">
-                <i></i>
-              </span>
             </article>
+            <div class="full-seal">
+              <span>印</span>
+            </div>
           </div>
         </div>
       </section>
@@ -76,8 +76,8 @@
         <ol class="steps">
           <li>
             <b>1</b>
-            <h3>上传 PDF 或原件</h3>
-            <p>合同、标书 PDF，也可以是 Word、Excel、拍照图片。</p>
+            <h3>上传 PDF 或图片</h3>
+            <p>合同、标书 PDF，也可以是拍照图片。</p>
           </li>
           <li>
             <b>2</b>
@@ -93,7 +93,7 @@
         <ul class="points">
           <li>骑缝章按页精确分割，页数多会自动分组</li>
           <li>正片叠底，印泥盖在字上仍能看清</li>
-          <li>Word / Excel / 图片在本地转成 PDF 再盖</li>
+          <li>图片在本地转成 PDF 再盖；Word / Excel 请先导出 PDF</li>
           <li>文件不上传，断网也能盖</li>
         </ul>
         <RouterLink to="/stamp" class="workbench-cta">打开骑缝章工具</RouterLink>
@@ -102,11 +102,11 @@
       <section class="more-tools">
         <h2 class="more-title">另外两个小工具</h2>
         <div class="more-grid">
-          <RouterLink to="/scan" class="more-card">
+          <RouterLink to="/scan" class="more-card scan">
             <h3>PDF 转扫描件</h3>
             <p>电子版做成纸质扫描效果，带倾斜和噪点。</p>
           </RouterLink>
-          <RouterLink to="/print" class="more-card">
+          <RouterLink to="/print" class="more-card print">
             <h3>PDF 打印效果</h3>
             <p>模拟激光、喷墨、针式打印的复印件质感。</p>
           </RouterLink>
@@ -126,7 +126,7 @@
           </article>
           <article class="faq-card">
             <h3>Word、Excel、图片能直接盖骑缝章吗？</h3>
-            <p>可以。docx、xlsx 和常见图片会先在本地转成 PDF，再盖骑缝章或公章。旧版 .doc / .xls 请先另存为 .docx / .xlsx。</p>
+            <p>图片可以，浏览器里转成 PDF 再盖。Word / Excel 请先在软件里导出或打印成 PDF，再上传，分页就和打印一样。</p>
           </article>
         </div>
       </section>
@@ -199,7 +199,13 @@ const themeLabel = computed(() => {
   backdrop-filter: blur(14px);
 }
 
-.logo { display: flex; align-items: center; gap: 10px; }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
 
 .logo-seal {
   width: 34px;
@@ -337,12 +343,14 @@ const themeLabel = computed(() => {
   min-height: 280px;
   display: grid;
   place-items: center;
+  overflow: visible;
 }
 
 .paper-stack {
   position: relative;
-  width: 280px;
-  height: 250px;
+  width: 310px;
+  height: 260px;
+  overflow: visible;
 }
 
 .sheet {
@@ -377,35 +385,38 @@ const themeLabel = computed(() => {
 }
 .rule.short { width: 62%; }
 
-.split-seal {
+.full-seal {
   position: absolute;
-  right: -27px;
-  top: 58px;
-  width: 54px;
-  height: 108px;
-  overflow: hidden;
-}
-.split-seal i {
-  position: absolute;
-  left: -27px;
-  top: 0;
-  width: 54px;
-  height: 108px;
-  border: 3px solid var(--seal);
+  right: 18px;
+  top: 64px;
+  z-index: 6;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
-  box-shadow: inset 0 0 0 6px color-mix(in srgb, var(--seal) 18%, transparent);
-}
-.split-seal i::after {
-  content: '骑缝';
-  position: absolute;
-  inset: 0;
+  border: 3px solid var(--seal);
+  background: color-mix(in srgb, var(--paper) 82%, #fff);
+  box-shadow:
+    inset 0 0 0 7px color-mix(in srgb, var(--seal) 22%, transparent),
+    0 8px 18px rgba(140, 24, 16, 0.18);
   display: grid;
   place-items: center;
+  transform: rotate(8deg);
+}
+.full-seal span {
   color: var(--seal);
-  font-family: "Songti SC", "STSong", serif;
-  font-size: 13px;
-  letter-spacing: 0.2em;
-  writing-mode: vertical-rl;
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+.full-seal::after {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 1.4px dashed var(--seal);
+  opacity: 0.7;
 }
 
 .workbench {
@@ -501,6 +512,10 @@ const themeLabel = computed(() => {
   color: var(--color-text-muted);
 }
 .more-card:hover { border-color: color-mix(in srgb, var(--seal) 40%, var(--color-border)); }
+.more-card.scan { border-color: color-mix(in srgb, #0d7c78 35%, var(--color-border)); }
+.more-card.scan h3 { color: #0d7c78; }
+.more-card.print { border-color: color-mix(in srgb, #c47a12 40%, var(--color-border)); }
+.more-card.print h3 { color: #c47a12; }
 
 .section-title {
   margin: 0 0 16px;

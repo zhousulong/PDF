@@ -1,4 +1,4 @@
-declare module 'virtual:vite-plugin-pwa/register' {
+declare module 'virtual:pwa-register' {
   export interface RegisterSWOptions {
     immediate?: boolean
     onNeedRefresh?: () => void

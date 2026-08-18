@@ -24,9 +24,9 @@ const themeOverrides = computed(() => {
   const isDark = theme.value === darkTheme
   return {
     common: {
-      primaryColor: isDark ? '#5b7cfa' : '#3b5df5',
-      primaryColorHover: isDark ? '#3a5ae8' : '#2545dc',
-      primaryColorPressed: isDark ? '#3a5ae8' : '#2545dc',
+      primaryColor: isDark ? '#2ec4b6' : '#0d7c78',
+      primaryColorHover: isDark ? '#1aa89b' : '#0a615e',
+      primaryColorPressed: isDark ? '#1aa89b' : '#0a615e',
       bodyColor: isDark ? '#0a0a0c' : '#f4f5f7',
       cardColor: isDark ? '#111116' : '#ffffff',
       borderColor: isDark ? '#2a2a38' : '#d8dae8',
@@ -42,10 +42,10 @@ const themeOverrides = computed(() => {
       color: isDark ? '#18181f' : '#f0f1f5',
       colorFocus: isDark ? '#18181f' : '#f0f1f5',
       border: `1px solid ${isDark ? '#2a2a38' : '#d8dae8'}`,
-      borderFocus: `1px solid ${isDark ? '#5b7cfa' : '#3b5df5'}`,
+      borderFocus: `1px solid ${isDark ? '#2ec4b6' : '#0d7c78'}`,
       borderHover: `1px solid ${isDark ? '#38384a' : '#c4c6d8'}`
     },
-    Switch: { railColorActive: isDark ? '#5b7cfa' : '#3b5df5' }
+    Switch: { railColorActive: isDark ? '#2ec4b6' : '#0d7c78' }
   }
 })
 </script>

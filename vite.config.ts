@@ -28,11 +28,16 @@ export default defineConfig(({ mode }) => {
       vue(),
       react(),
       VitePWA({
+        registerType: 'autoUpdate',
         base: '/',
         scope: '/',
         buildBase: '/',
         includeAssets: ['favicon.svg', 'robots.txt', 'sitemap.xml'],
         workbox: {
+          skipWaiting: true,
+          clientsClaim: true,
+          cleanupOutdatedCaches: true,
+          importScripts: ['/sw-reload-clients.js'],
           globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
           maximumFileSizeToCacheInBytes: 15000000,
           navigateFallback: 'index.html',

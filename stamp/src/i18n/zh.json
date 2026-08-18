@@ -2,18 +2,27 @@
   "app": {
     "title": "PDF加盖骑缝章",
     "subtitle": "给PDF盖骑缝章和公章",
-    "tagline": "免费在线 · 文件不上传 · 支持 PDF / Word / Excel / 图片"
+    "tagline": "免费在线 · 文件不上传 · 支持 PDF / 图片"
   },
   "tabs": {
     "qfz": "骑缝章",
     "yz": "普通章"
   },
+  "onboard": {
+    "kicker": "先选盖章方式",
+    "title": "这次要盖哪种章？",
+    "sub": "可以只选一个，也可以两个都选。选好后会收到左上角，之后随时用开关改。",
+    "qfz_desc": "多页合同、标书，印章切开盖在页边",
+    "yz_desc": "在页面上点一下，盖普通公章",
+    "confirm": "确认，开始盖章",
+    "hint": "确认后卡片会飞到左上角的开关位置"
+  },
   "upload": {
     "pdf": {
       "title": "上传待盖章文件",
       "hint": "拖拽文件到此处，或点击选择",
-      "multi": "Word / Excel / 图片会在浏览器内自动转为 PDF，再盖章",
-      "formats": "PDF · Word · Excel · JPG / PNG / WEBP",
+      "multi": "图片会在浏览器内自动转为 PDF，再盖章。Word / Excel 请先在软件里导出 PDF",
+      "formats": "PDF · JPG / PNG / WEBP",
       "password": "PDF密码（加密文件）",
       "password_placeholder": "留空表示无密码"
     },
@@ -27,7 +36,7 @@
   },
   "preview": {
     "title": "文件预览",
-    "no_file": "请先上传 PDF、Word、Excel 或图片",
+    "no_file": "请先上传 PDF 或图片",
     "page": "第 {{current}} / {{total}} 页",
     "prev": "上一页",
     "next": "下一页",
@@ -108,12 +117,8 @@
     "converted": "已转为 PDF",
     "source_pdf": "PDF",
     "source_image": "图片",
-    "source_docx": "Word",
-    "source_xlsx": "Excel",
-    "source_txt": "文本",
     "source_other": "文件",
-    "err_legacy": "暂不支持旧版 .doc / .xls，请另存为 .docx / .xlsx",
-    "err_unsupported": "暂不支持该格式",
+    "err_unsupported": "请上传 PDF 或图片。Word / Excel 请先导出为 PDF",
     "err_convert": "转换失败，请另存为 PDF 后再试"
   },
   "lang": {
@@ -134,7 +139,7 @@
   },
   "landing": {
     "title": "PDF加盖骑缝章",
-    "description": "免费在线给PDF加盖骑缝章和公章。合同、标书不用下载软件，Word、Excel、图片也能直接盖，文件不上传。",
+    "description": "免费在线给PDF加盖骑缝章和公章。合同、标书不用下载软件，图片也能直接盖，文件不上传。",
     "start": "立即使用",
     "features": {
       "privacy": {
@@ -143,7 +148,7 @@
       },
       "qfz": {
         "title": "智能骑缝章",
-        "desc": "自动计算并均匀分割印章图像，智能缝合在多页文件边缘。Word / Excel / 图片会先在本地转为 PDF。"
+        "desc": "自动计算并均匀分割印章图像，智能缝合在多页文件边缘。图片会先在本地转为 PDF。"
       },
       "custom": {
         "title": "精确点选盖章",
@@ -155,7 +160,7 @@
       },
       "batch": {
         "title": "多文件批量处理",
-        "desc": "支持一次性上传并处理多个 PDF / Word / Excel / 图片，提供打包下载，大幅提升办公效率。"
+        "desc": "支持一次性上传并处理多个 PDF 或图片，提供打包下载，大幅提升办公效率。"
       },
       "offline": {
         "title": "离线可用",
@@ -165,13 +170,13 @@
   },
   "meta": {
     "title": "PDF加盖骑缝章 - 免费在线给PDF盖骑缝章",
-    "description": "免费在线给PDF加盖骑缝章和公章，合同、标书不用下载软件。支持批量盖章，Word、Excel、图片也能直接盖，文件不上传。"
+    "description": "免费在线给PDF加盖骑缝章和公章，合同、标书不用下载软件。支持批量盖章，图片也能直接转 PDF 再盖，文件不上传。"
   },
   "seo": {
     "h1": "PDF加盖骑缝章",
     "sub": "免费在线给PDF盖骑缝章和公章 · 合同、标书不用下载软件",
-    "guide_title": "怎么给PDF盖骑缝章？Word、Excel、图片也能直接盖吗？",
-    "guide_text": "骑缝章（又称跨页印章、切缝印章）是在多页合同、标书或公文边缘加盖的特殊防伪印章。通过将一枚完整印章等比例拆分盖于多页纸张边缘，可以有效防止任何单页文档被悄悄替换、撕毁或篡改。本工具在浏览器内把 Word、Excel、图片转为 PDF，再用智能切割算法加盖骑缝章或普通公章，支持调节切割比例、位置与透明度。",
+    "guide_title": "怎么给PDF盖骑缝章？拍照图片能直接盖吗？",
+    "guide_text": "骑缝章（又称跨页印章、切缝印章）是在多页合同、标书或公文边缘加盖的特殊防伪印章。通过将一枚完整印章等比例拆分盖于多页纸张边缘，可以有效防止任何单页文档被悄悄替换、撕毁或篡改。上传 PDF，或把合同照片在浏览器里转成 PDF，再加盖骑缝章或普通公章，支持调节切割比例、位置与透明度。",
     "faq_title": "常见问题解答 (FAQ)",
     "faqs": [
       {
@@ -183,8 +188,8 @@
         "a": "上传文件与印章图片后，选择“骑缝章”模式，您可以在左侧面板中实时调整【印章尺寸（mm）】、【纵向位置（%）】、【透明度】以及【最高分割数】。右侧预览区会即时显示分割渲染效果，所见即所得。"
       },
       {
-        "q": "可以直接上传 Word、Excel 或手机拍照的合同图片吗？",
-        "a": "可以。骑缝章工具支持 PDF、Word（.docx）、Excel（.xlsx / CSV）以及常见图片格式。文件会在您的浏览器里先转成 PDF，再预览和盖章，整个过程不离开本机。旧版 .doc / .xls 请先另存为 .docx / .xlsx。"
+        "q": "可以直接上传手机拍照的合同图片吗？Word、Excel 呢？",
+        "a": "图片可以，会在浏览器里转成 PDF 再盖章。Word / Excel 请先在软件里「导出为 PDF」或「打印到 PDF」，再上传这个 PDF，这样分页和排版与打印完全一致。"
       },
       {
         "q": "如果 PDF 页面过多（如超过 30 页），骑缝章会盖不下吗？",
