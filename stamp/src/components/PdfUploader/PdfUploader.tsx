@@ -1,7 +1,22 @@
 import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 import type { PdfFile } from '../../hooks/usePdfFiles';
+import type { SourceKind } from '../../lib/documentToPdf';
 import styles from './PdfUploader.module.css';
+
+function sourceKey(kind: SourceKind): string {
+  if (kind === 'image' || kind === 'docx' || kind === 'xlsx' || kind === 'txt' || kind === 'pdf') {
+    return kind;
+  }
+  return 'other';
+}
+
+function formatFileError(error: string, t: TFunction): string {
+  if (error === 'legacy_office') return t('file.err_legacy');
+  if (error === 'unsupported_format') return t('file.err_unsupported');
+  return t('file.err_convert');
+}
 
 interface Props {
   files: PdfFile[];
@@ -67,7 +82,7 @@ export default function PdfUploader({
         <input
           ref={inputRef}
           type="file"
-          accept=".pdf,application/pdf"
+          accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.bmp,.tif,.tiff,.svg,.docx,.xlsx,.xlsm,.csv,.txt,.doc,.xls,application/pdf,image/*,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv,text/plain"
           multiple
           className={styles.hiddenInput}
           onChange={handleInputChange}
@@ -84,6 +99,7 @@ export default function PdfUploader({
             </div>
             <p className={styles.hint}>{t('upload.pdf.hint')}</p>
             <p className={styles.hintSub}>{t('upload.pdf.multi')}</p>
+            <p className={styles.formats}>{t('upload.pdf.formats')}</p>
           </div>
         ) : (
           <div className={styles.fileCountBadge} onClick={e => e.stopPropagation()}>
@@ -106,18 +122,28 @@ export default function PdfUploader({
           </div>
           <div className={styles.fileItems}>
             {files.map(f => (
-              <div key={f.id} className={styles.fileItem}>
+              <div key={f.id} className={`${styles.fileItem} ${f.error ? styles.fileItemError : ''}`}>
                 <span className={styles.fileIcon}>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.2"/>
                     <path d="M4 5h6M4 7h6M4 9h4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
                   </svg>
                 </span>
-                <span className={styles.fileName} title={f.name}>{f.name}</span>
+                <span className={styles.fileMeta}>
+                  <span className={styles.fileName} title={f.originalName}>{f.originalName}</span>
+                  <span className={styles.fileStatus}>
+                    <span className={styles.sourceBadge}>{t(`file.source_${sourceKey(f.sourceKind)}`)}</span>
+                    {f.converting && <span className={styles.converting}>{t('file.converting')}</span>}
+                    {!f.converting && !f.error && f.sourceKind !== 'pdf' && (
+                      <span className={styles.converted}>{t('file.converted')}</span>
+                    )}
+                    {f.error && <span className={styles.fileError}>{formatFileError(f.error, t)}</span>}
+                  </span>
+                </span>
                 <button
                   className={styles.removeBtn}
                   onClick={() => onRemoveFile(f.id)}
-                  aria-label={`Remove ${f.name}`}
+                  aria-label={`Remove ${f.originalName}`}
                 >
                   ×
                 </button>

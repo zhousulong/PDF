@@ -52,11 +52,14 @@
     "scan/src/**/*.ts",
     "scan/src/**/*.vue",
     "print/src/**/*.ts",
-    "print/src/**/*.vue"
+    "print/src/**/*.vue",
+    "stamp/src/**/*.ts",
+    "stamp/src/**/*.tsx"
   ],
   "exclude": [
     "scan/src/main.ts",
     "print/src/main.ts",
-    "scan/src/router/index.ts"
+    "scan/src/router/index.ts",
+    "stamp/src/main.tsx"
   ]
 }

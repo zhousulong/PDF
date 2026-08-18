@@ -12,6 +12,30 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.3.1',
+    date: '2026-08-18',
+    changes: [
+      '修复 Word 转 PDF 一页被拆成多页：continuous 分节（报价单常见）不再当成新页；按 Word 分页符和原始页尺寸出 PDF',
+    ],
+    changesEn: [
+      'Fixed Word-to-PDF turning one page into several: honour Word page breaks and native page size instead of squeezing into 794px and stretching to A4',
+    ],
+  },
+  {
+    version: '1.3.0',
+    date: '2026-08-18',
+    changes: [
+      '骑缝章 / 盖章支持上传 Word、Excel、图片等原始文档，浏览器内自动转为 PDF',
+      '上传区展示格式来源与转换进度，旧版 .doc / .xls 给出明确提示',
+      '文案与首页改为突出电子盖章、骑缝章，扫描件与打印效果降为辅助工具',
+    ],
+    changesEn: [
+      'Seam-seal / stamp now accepts Word, Excel, and images, converted to PDF locally in the browser',
+      'Uploader shows source format and conversion progress; legacy .doc / .xls get a clear hint',
+      'Copy and homepage now lead with official-seal and seam-stamp; scan / print are secondary tools',
+    ],
+  },
+  {
     version: '1.2.2',
     date: '2026-05-20',
     changes: [

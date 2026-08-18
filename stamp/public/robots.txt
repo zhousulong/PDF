@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qfz.9ump.com/sitemap.xml
+Sitemap: https://www.9ump.com/sitemap.xml

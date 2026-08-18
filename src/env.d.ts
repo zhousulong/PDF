@@ -4,9 +4,7 @@
 interface ImportMetaEnv {
   /** User-facing origin, e.g. https://www.9ump.com */
   readonly VITE_SITE_ORIGIN?: string
-  /** Static asset CDN origin, e.g. https://pdf.yunno.net */
-  readonly VITE_CDN_ORIGIN?: string
-  /** Vite `base` override for dual-domain builds, e.g. https://pdf.yunno.net/ */
+  /** Optional Vite `base` override. Defaults to same-origin `/`. */
   readonly VITE_ASSET_BASE?: string
 }
 

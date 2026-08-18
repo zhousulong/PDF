@@ -4,7 +4,7 @@
       v-for="item in navItems"
       :key="item.to"
       :to="item.to"
-      :class="['nav-item', { active: isActive(item.to) }]"
+      :class="['nav-item', { active: isActive(item.to), primary: item.primary }]"
       :title="item.label"
     >
       <span class="nav-icon" v-html="item.icon" />
@@ -22,22 +22,26 @@ const navItems = [
   {
     to: '/',
     label: '首页',
+    primary: false,
     icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`
   },
   {
+    to: '/stamp',
+    label: 'PDF骑缝章',
+    primary: true,
+    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="5"/><path d="M12 6V3H9m6 0h-3"/><path d="M4 21h16"/></svg>`
+  },
+  {
     to: '/scan',
-    label: 'PDF 扫描件',
+    label: '转扫描件',
+    primary: false,
     icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/></svg>`
   },
   {
     to: '/print',
-    label: 'PDF 打印效果',
+    label: '打印效果',
+    primary: false,
     icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>`
-  },
-  {
-    to: '/stamp',
-    label: 'PDF 骑缝章',
-    icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="5"/><path d="M12 6V3H9m6 0h-3"/><path d="M4 21h16"/></svg>`
   }
 ]
 
@@ -87,6 +91,14 @@ const isActive = (to: string) => {
 .nav-item.active {
   background: rgba(91, 124, 250, 0.18);
   color: #5b7cfa;
+}
+
+.nav-item.primary {
+  color: #5b7cfa;
+}
+
+.nav-item.primary:not(.active) {
+  background: rgba(91, 124, 250, 0.08);
 }
 
 .nav-icon {

@@ -33,21 +33,25 @@ export default function ProcessPanel({ pdfFiles, stampBlob, password, qfzConfig,
     setLogs(prev => prev.map(l => l.id === id ? { ...l, ...update } : l));
   };
 
+  const converting = pdfFiles.some(f => f.converting);
+  const readyFiles = pdfFiles.filter(f => !f.converting && !f.error);
+
   const handleProcess = async () => {
-    if (!pdfFiles.length) { alert(t('process.no_pdf')); return; }
+    if (converting) { alert(t('process.converting')); return; }
+    if (!readyFiles.length) { alert(t('process.no_pdf')); return; }
     if (!stampBlob) { alert(t('process.no_stamp')); return; }
 
     cancelRef.current = false;
     setProcessing(true);
 
-    const initialLogs: LogEntry[] = pdfFiles.map(f => ({
+    const initialLogs: LogEntry[] = readyFiles.map(f => ({
       id: f.id,
       name: f.name,
       status: 'processing',
     }));
     setLogs(initialLogs);
 
-    for (const f of pdfFiles) {
+    for (const f of readyFiles) {
       if (cancelRef.current) break;
 
       try {
@@ -145,7 +149,7 @@ export default function ProcessPanel({ pdfFiles, stampBlob, password, qfzConfig,
           id="start-process"
           className={`${styles.startBtn} ${processing ? styles.processing : ''}`}
           onClick={handleProcess}
-          disabled={processing}
+          disabled={processing || converting || !readyFiles.length}
         >
           {processing ? (
             <>

@@ -252,7 +252,7 @@ export default function App() {
 
       {/* Footer — desktop only */}
       <footer className={styles.footer}>
-        <span>PDF骑缝章工具 · {new Date().getFullYear()}</span>
+        <span>PDF加盖骑缝章 · {new Date().getFullYear()}</span>
         <span className={styles.footerSep}>·</span>
         <span>{t('app.tagline')}</span>
       </footer>

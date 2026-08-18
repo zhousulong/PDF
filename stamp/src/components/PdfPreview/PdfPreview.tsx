@@ -22,7 +22,7 @@ let pdfjsLib: typeof import('pdfjs-dist') | null = null;
 async function getPdfjsLib() {
   if (!pdfjsLib) {
     const lib = await import('pdfjs-dist');
-    // Prefer built worker asset URL so CDN absolute base (pdf.yunno.net) is respected
+    // Prefer built worker asset URL so Vite's hashed worker path is respected
     const workerMod = await import('pdfjs-dist/build/pdf.worker.min.js?url');
     const workerUrl = new URL(
       (workerMod as { default: string }).default,
@@ -56,12 +56,14 @@ export default function PdfPreview({ files, password, onPageClick, onRemoveStamp
   const loadedFilesRef = useRef<string>('');
 
   useEffect(() => {
-    if (!files.length) {
+    const readyFiles = files.filter(f => !f.converting && !f.error);
+    if (!readyFiles.length) {
       setDocEntries([]);
+      loadedFilesRef.current = '';
       return;
     }
 
-    const key = files.map(f => f.id + f.file.size).join('|');
+    const key = readyFiles.map(f => f.id + f.file.size).join('|');
     if (loadedFilesRef.current === key) return;
 
     let cancelled = false;
@@ -70,7 +72,7 @@ export default function PdfPreview({ files, password, onPageClick, onRemoveStamp
       try {
         const lib = await getPdfjsLib();
         const entries: PdfDocEntry[] = [];
-        for (const pdfFile of files) {
+        for (const pdfFile of readyFiles) {
           if (cancelled) break;
           try {
             const arrayBuffer = await pdfFile.file.arrayBuffer();
@@ -96,6 +98,8 @@ export default function PdfPreview({ files, password, onPageClick, onRemoveStamp
     return () => { cancelled = true; };
   }, [files, password]);
 
+  const converting = files.some(f => f.converting);
+
   if (!files.length) {
     return (
       <div className={styles.empty}>
@@ -113,10 +117,10 @@ export default function PdfPreview({ files, password, onPageClick, onRemoveStamp
   return (
     <div className={styles.container}>
       <div className={styles.canvasWrap}>
-        {loading && (
+        {(loading || converting) && (
           <div className={styles.loadingOverlay}>
             <div className={styles.spinner} />
-            <span>{t('preview.loading')}</span>
+            <span>{converting ? t('file.converting') : t('preview.loading')}</span>
           </div>
         )}
         {!loading && docEntries.length > 0 && (

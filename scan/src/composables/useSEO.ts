@@ -75,7 +75,7 @@ export function useSEO() {
       { property: 'og:description', content: computed(() => seoData.value.description) },
       { property: 'og:url', content: computed(() => canonicalUrl.value) },
       { property: 'og:locale', content: computed(() => seoData.value.locale) },
-      { property: 'og:site_name', content: 'PDF小工具箱' },
+      { property: 'og:site_name', content: 'PDF转扫描件' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: computed(() => seoData.value.title) },
       { name: 'twitter:description', content: computed(() => seoData.value.description) }

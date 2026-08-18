@@ -5,17 +5,11 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 /**
- * Dual-domain build:
- * - Main site:  https://www.9ump.com   (HTML / SEO / Service Worker)
- * - Asset CDN:  https://pdf.yunno.net  (hashed static assets)
- *
- * Production CDN build:
- *   VITE_ASSET_BASE=https://pdf.yunno.net/ vite build
- *
- * Self-contained / same-origin build:
+ * Same-origin build on https://www.9ump.com
  *   vite build   (default base `/`)
  *
- * SW must always register on the page origin, never on the CDN origin.
+ * Optional asset-base override:
+ *   VITE_ASSET_BASE=/ vite build
  */
 function normalizeBase(raw: string | undefined): string {
   if (!raw || raw === '/') return '/'
@@ -26,12 +20,6 @@ function normalizeBase(raw: string | undefined): string {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const assetBase = normalizeBase(env.VITE_ASSET_BASE || process.env.VITE_ASSET_BASE)
-  const isAbsoluteAssetBase = /^https?:\/\//i.test(assetBase)
-  const cdnOrigin =
-    (env.VITE_CDN_ORIGIN || process.env.VITE_CDN_ORIGIN || 'https://pdf.yunno.net').replace(
-      /\/$/,
-      ''
-    )
 
   return {
     base: assetBase,
@@ -40,7 +28,6 @@ export default defineConfig(({ mode }) => {
       vue(),
       react(),
       VitePWA({
-        // Keep SW + scope on the page origin even when assets use an absolute CDN base
         base: '/',
         scope: '/',
         buildBase: '/',
@@ -49,57 +36,12 @@ export default defineConfig(({ mode }) => {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
           maximumFileSizeToCacheInBytes: 15000000,
           navigateFallback: 'index.html',
-          navigateFallbackDenylist: [/^\/api\//],
-          // When assets live on pdf.yunno.net, rewrite precache entries so the SW
-          // on www.9ump.com does not try to fetch /assets/* from the page origin.
-          // Literal origin string is required — workbox stringifies urlPattern fns
-          // and cannot capture outer-scope variables.
-          ...(isAbsoluteAssetBase
-            ? {
-                manifestTransforms: [
-                  async (entries: { url: string; revision?: string | null; size?: number }[]) => {
-                    const cdn = cdnOrigin.replace(/\/$/, '')
-                    const manifest = entries.map((entry) => {
-                      const url = entry.url.replace(/^\//, '')
-                      // Hashed build assets + public files that HTML also points at CDN
-                      if (
-                        url.startsWith('assets/') ||
-                        url === 'favicon.svg' ||
-                        url === 'favicon.ico' ||
-                        url.startsWith('pwa-') ||
-                        url === 'apple-touch-icon.png'
-                      ) {
-                        return { ...entry, url: `${cdn}/${url}` }
-                      }
-                      return entry
-                    })
-                    return { manifest }
-                  }
-                ],
-                runtimeCaching: [
-                  {
-                    urlPattern: ({ url }: { url: URL }) =>
-                      url.origin === 'https://pdf.yunno.net',
-                    handler: 'CacheFirst' as const,
-                    options: {
-                      cacheName: 'cdn-static-assets',
-                      expiration: {
-                        maxEntries: 300,
-                        maxAgeSeconds: 60 * 60 * 24 * 365
-                      },
-                      cacheableResponse: {
-                        statuses: [0, 200]
-                      }
-                    }
-                  }
-                ]
-              }
-            : {})
+          navigateFallbackDenylist: [/^\/api\//]
         },
         manifest: {
-          name: 'PDF小工具箱',
-          short_name: 'PDF工具箱',
-          description: '100% 浏览器本地运行的免费在线 PDF 工具箱 (扫描件/打印效果/骑缝章)',
+          name: 'PDF加盖骑缝章',
+          short_name: 'PDF骑缝章',
+          description: '免费在线给PDF加盖骑缝章和公章，合同、标书不用下载软件',
           theme_color: '#111116',
           background_color: '#0a0a0c',
           display: 'standalone',

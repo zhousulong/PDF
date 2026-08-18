@@ -2,9 +2,8 @@ import pdfJsWorkerURL from 'pdfjs-dist/build/pdf.worker.min.js?url'
 import { GlobalWorkerOptions } from 'pdfjs-dist'
 
 /**
- * Resolve worker script URL for both same-origin and CDN absolute bases.
- * Blob + importScripts keeps the Worker same-origin as the page while the
- * script body can still be fetched from pdf.yunno.net (requires CORS).
+ * Resolve worker script URL. Blob + importScripts keeps the Worker
+ * same-origin as the page even if the hashed worker asset is on another path.
  */
 export function setupPdfWorker(): void {
   if (typeof window === 'undefined') return
